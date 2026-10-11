@@ -141,11 +141,11 @@
 }
 .element-row {
   position: relative;
-  height: 34px;
+  height: auto;
   display: grid;
-  grid-template-columns: 100px minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr);
   align-items: center;
-  gap: 12px;
+  gap: 4px;
 }
 .element-name {
   display: flex;
@@ -240,12 +240,6 @@
   color: var(--muted);
   line-height: 1.6;
   padding: 8px 0;
-}
-@media (max-width: 600px) {
-  .element-row {
-    grid-template-columns: 68px minmax(0, 1fr);
-    gap: 8px;
-  }
 }
 @keyframes timeline-reveal {
   from {

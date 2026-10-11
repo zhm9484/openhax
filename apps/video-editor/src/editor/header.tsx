@@ -9,6 +9,8 @@ interface HeaderProps {
   project: VideoProject;
   workspaces: Workspace[];
   saving: boolean;
+  saveFailed: boolean;
+  error: string;
   onTravel: (direction: 'undo' | 'redo') => void;
   onExport: () => void;
   historyOpen: boolean;
@@ -24,7 +26,15 @@ export function Header(p: HeaderProps) {
       workspaceId={p.project.workspaceId}
       workspaces={p.workspaces}
       onSelect={p.onSelect}
-      status={p.saving ? 'Saving…' : 'Saved locally'}
+      status={
+        p.saving
+          ? 'Saving…'
+          : p.saveFailed
+            ? 'Change not saved'
+            : p.error
+              ? 'Needs attention'
+              : 'Saved locally'
+      }
       canUndo={p.project.canUndo}
       canRedo={p.project.canRedo}
       busy={p.saving}

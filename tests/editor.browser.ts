@@ -314,6 +314,9 @@ test('failed scene-text saves restore the canvas and leave history intact', asyn
   expect((await readWorkspace(request, workspace.workspaceId)).revisionId).toBe(
     workspace.revisionId,
   );
+  await expect(page.locator('.save-indicator')).toHaveText('Change not saved');
+  await page.getByRole('button', { name: 'Dismiss error' }).click();
+  await expect(page.locator('.save-indicator')).toHaveText('Change not saved');
 });
 
 test('focused text timeline retimes, locates, collapses and deletes with undo', async ({
@@ -340,6 +343,10 @@ test('focused text timeline retimes, locates, collapses and deletes with undo', 
     .press('Escape');
   await expect(page.locator('.element-row')).toHaveCount(1);
   await expect(page.getByRole('button', { name: /^(Expand|Collapse) timeline$/ })).toHaveCount(0);
+  const sceneAxis = (await page.locator('.scene-strip').boundingBox())!;
+  const textAxis = (await page.locator('.element-track').boundingBox())!;
+  expect(textAxis.x).toBeCloseTo(sceneAxis.x, 0);
+  expect(textAxis.width).toBeCloseTo(sceneAxis.width, 0);
   const block = page.getByRole('button', { name: /^Timeline: Make room/ });
   await expect(block).toHaveAttribute('aria-pressed', 'true');
   await page.screenshot({ path: '.openhax/focused-timeline.png', animations: 'disabled' });

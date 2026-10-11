@@ -154,7 +154,7 @@ export function NoteCard({
 
 export function NotesBoard({ state }: { state: EditorState }) {
   const notes = state.project!.notes.filter((note) => !note.requestId);
-  if (!notes.length && !state.notesOpen) return null;
+  if (!state.notesOpen) return null;
   return <Board state={state} notes={notes} />;
 }
 function Board({ state, notes }: { state: EditorState; notes: Note[] }) {

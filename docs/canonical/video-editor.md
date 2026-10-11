@@ -88,7 +88,8 @@ target text/start-tag ranges while preserving surrounding source and scripts. Ge
 occluded or unsupported text remains available to the agent in source.
 
 Selecting supported text opens its focused timing lane. Explicit `data-start` and `data-duration`
-attributes can be moved/resized, including offsets from statically referenced sub-compositions.
+attributes can be moved/resized, including offsets from statically referenced sub-compositions. Its
+track shares the scene strip’s horizontal time scale; its label sits above the track.
 Double-clicking a block seeks to its start. Delete removes the source element; undo restores it.
 Reused compositions and script-controlled timing do not receive invented timing controls. Attribute
 edits do not rewrite GSAP keyframes; deleting a node may require a related script edit by the agent.
@@ -109,11 +110,12 @@ the context is explicit and is unavailable after attempting to save that draft. 
 new line; Cmd/Ctrl+Enter performs the entry point's primary action. File drops open Chat. Saving
 closes the composer and returns to the work. Pending notes appear in a draggable, collapsible board
 with a count, locate/edit/delete controls and **Send all**. Its position persists and stays within
-the viewport. A successful batch empties and hides the board; Notes can reopen it to access the
-centered **Notes history** dialog. History shows submitted notes, their original context and
-delivery state. Editing checks the previous text and rejects notes changed, removed or submitted in
-another page. Notes also retain attachment references; editing uses the shared mention input and
-checks previous text and attachments together.
+the viewport. The Notes button opens or closes the board even while unsent notes remain. A
+successful batch empties and hides the board; Notes can reopen it to access the centered **Notes
+history** dialog. History shows submitted notes, their original context and delivery state. Editing
+checks the previous text and rejects notes changed, removed or submitted in another page. Notes also
+retain attachment references; editing uses the shared mention input and checks previous text and
+attachments together.
 
 An unbound send opens Agent connection and preserves the draft; **Continue sending** resumes the
 chosen action after binding. Canceling preserves the draft without sending. Sending disables
@@ -125,8 +127,10 @@ updates preserve typed drafts and their original anchors. Drafts are not persist
 The visible page polls every 1.8 seconds. Files must be stable across two observations at least 650
 ms apart. Capture validates source and builds Remotion before committing an external revision.
 Incomplete saves, invalid manifests and failed builds retain the current head and report an error.
-UI writes, imports, publication and checkout are serialized; stale or unobserved working edits cause
-409 rather than overwriting files. Undo/redo restores working source as well as the head.
+The save indicator reports failures instead of claiming success; dismissing a failed-save error does
+not change that status until a later write succeeds. UI writes, imports, publication and checkout
+are serialized; stale or unobserved working edits cause 409 rather than overwriting files. Undo/redo
+restores working source as well as the head.
 
 Every accepted revision loads a replacement player behind the previous frame. The new player must
 acknowledge readiness and seek to the paused position before the editor adopts its picture,
@@ -167,8 +171,10 @@ original MP4/WebM bytes, preserving audio and encoding. Export reports preparati
 rendering and records the browser version when used. Missing engine/browser/encoding capabilities
 are prepared for that export, independently of 3D and other video engines. One export runs at a
 time; errors do not change the editing revision. A service restart marks interrupted exports failed.
-Source versions, prepared previews, dependency caches, thumbnails and exports have no automatic
-garbage collection.
+The browser remembers the latest export ID per workspace and revision in local storage; reopening
+Export, including after reload, retrieves its current status or download. A different revision
+starts with its own export state. Source versions, prepared previews, dependency caches, thumbnails
+and exports have no automatic garbage collection.
 
 There is no waveform/keyframe editor, stock library, automatic transition compositor or general
 inference of script behavior. The previous structured arrangement format and native-mode aliases

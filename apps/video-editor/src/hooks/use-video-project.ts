@@ -7,6 +7,7 @@ export function useVideoProject(id: string, deferPreview: () => boolean = () => 
   const [project, setProject] = useState<VideoProject | null>(null);
   const [error, setError] = useState('');
   const [saving, setSaving] = useState(false);
+  const [saveFailed, setSaveFailed] = useState(false);
   const current = useRef(project);
   const pending = useRef(false);
   const mutation = useRef(0);
@@ -62,8 +63,10 @@ export function useVideoProject(id: string, deferPreview: () => boolean = () => 
         next.source = { directory: current.current.source.directory };
       current.current = next;
       setProject(next);
+      setSaveFailed(false);
       return true;
     } catch (e) {
+      setSaveFailed(true);
       setError(e instanceof Error ? e.message : 'The change could not be saved.');
       return false;
     } finally {
@@ -109,6 +112,7 @@ export function useVideoProject(id: string, deferPreview: () => boolean = () => 
     project,
     error,
     saving,
+    saveFailed,
     save,
     travel,
     removeNote,

@@ -13,6 +13,15 @@ export function ExportDialog({
 }) {
   const [project] = useState(initialProject);
   const dialog = useRef<HTMLDialogElement>(null);
+  const storageKey = `video-editor:export:${project.workspaceId}:${project.revisionId}`;
+  const [previousJobId] = useState(() => {
+    try {
+      return localStorage.getItem(storageKey);
+    } catch {
+      return null;
+    }
+  });
+  const [recovering, setRecovering] = useState(!!previousJobId);
   const [job, setJob] = useState<ExportJob | null>(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
@@ -20,6 +29,26 @@ export function ExportDialog({
   useEffect(() => {
     dialog.current?.showModal();
   }, []);
+  useEffect(() => {
+    if (!previousJobId) return;
+    let active = true;
+    void api<ExportJob>(
+      `/workspaces/${project.workspaceId}/apps/video-editor/exports/${previousJobId}`,
+    )
+      .then((previous) => {
+        if (active && previous.revisionId === project.revisionId) setJob(previous);
+      })
+      .catch((error: unknown) => {
+        if (active)
+          setError(error instanceof Error ? error.message : 'Could not recover the export.');
+      })
+      .finally(() => {
+        if (active) setRecovering(false);
+      });
+    return () => {
+      active = false;
+    };
+  }, [previousJobId, project.workspaceId, project.revisionId]);
   useEffect(() => {
     if (!job || job.state !== 'rendering') return;
     const timer = setInterval(() => {
@@ -36,11 +65,18 @@ export function ExportDialog({
     setBusy(true);
     setError('');
     try {
-      setJob(
-        await post<ExportJob>(`/workspaces/${project.workspaceId}/apps/video-editor/exports`, {
+      const next = await post<ExportJob>(
+        `/workspaces/${project.workspaceId}/apps/video-editor/exports`,
+        {
           revisionId: project.revisionId,
-        }),
+        },
       );
+      setJob(next);
+      try {
+        localStorage.setItem(storageKey, next.id);
+      } catch {
+        /* The export remains usable when device storage is unavailable. */
+      }
     } catch (error) {
       setError(error instanceof Error ? error.message : 'Could not start export.');
     } finally {
@@ -99,7 +135,7 @@ export function ExportDialog({
       ) : (
         <button
           className="primary-button full-width"
-          disabled={busy || job?.state === 'rendering'}
+          disabled={busy || recovering || job?.state === 'rendering'}
           onClick={() => void start()}
         >
           {job?.state === 'rendering' ? (
@@ -107,6 +143,8 @@ export function ExportDialog({
               <span className="loading-dot" />
               {job.stage ? `${job.stage}…` : 'Rendering your video…'}
             </>
+          ) : recovering ? (
+            'Checking previous export…'
           ) : busy ? (
             'Starting…'
           ) : (

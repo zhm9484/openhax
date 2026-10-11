@@ -93,6 +93,8 @@ export function Editor({ id, workspaces, onSelect }: EditorProps) {
         project={project}
         workspaces={workspaces}
         saving={state.saving}
+        saveFailed={state.saveFailed}
+        error={state.error}
         onTravel={(direction) => void state.travel(direction)}
         onExport={() => state.setExporting(true)}
         historyOpen={state.panel === 'history'}

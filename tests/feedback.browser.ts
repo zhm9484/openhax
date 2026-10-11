@@ -271,3 +271,18 @@ test('image previews follow the draft and explicit context replacement never los
   await expect(input.locator('[data-reference]')).toHaveCount(1);
   await expect(composer.getByRole('button', { name: 'Preview reference.png' })).toBeVisible();
 });
+
+test('Notes toggles closed even while unsent notes remain', async ({ page, request }) => {
+  const video = await createVideo(request, 'Notes visibility');
+  await page.goto(`/apps/video-editor/w/${video.workspaceId}`);
+  await expect(page.locator('.preview-loading')).toHaveCount(0);
+  await page.getByRole('button', { name: 'Chat', exact: true }).click();
+  await page.getByLabel('Chat message').fill('Keep this note for later');
+  await page.getByRole('button', { name: 'Add note to list' }).click();
+  const board = page.getByRole('region', { name: 'Pending notes' });
+  await expect(board.getByText('Keep this note for later')).toBeVisible();
+  await page.getByRole('button', { name: 'Notes', exact: true }).click();
+  await expect(board).toHaveCount(0);
+  await page.getByRole('button', { name: 'Notes', exact: true }).click();
+  await expect(board.getByText('Keep this note for later')).toBeVisible();
+});
