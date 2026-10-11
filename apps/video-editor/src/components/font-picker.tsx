@@ -1,8 +1,8 @@
 import { createPortal } from 'react-dom';
 import { useEffect, useId, useRef, useState } from 'react';
 import { Check, ChevronDown, Search } from 'lucide-react';
-import type { VideoDocument } from '@codex-ux/video-domain';
-import { useFloatingPosition, type FloatingAnchor } from '@codex-ux/editor-ui';
+import type { VideoDocument } from '@openhax/video-domain';
+import { useFloatingPosition, type FloatingAnchor } from '@openhax/editor-ui';
 
 const families = {
   'Sans serif': [

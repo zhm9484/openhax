@@ -32,7 +32,7 @@ Replacing an existing binding requires its exact previous session; a changed pag
 pairing. Ended receipts reject mutations with 410; missing receipts return 404.
 
 App integration uses `openAppInstance(appId)` and `instance.enableConnections()` from
-`@codex-ux/sdk`. Call `instance.select(workspaceId)` when page navigation changes, subscribe to
+`@openhax/sdk`. Call `instance.select(workspaceId)` when page navigation changes, subscribe to
 instance updates to refresh UI, and expose `instance.connections.offer()` for existing-page pairing.
 Read the resulting connection/error for user feedback. The SDK removes invitation fragments,
 verifies scope and current binding before and after network calls, persists local bindings, and

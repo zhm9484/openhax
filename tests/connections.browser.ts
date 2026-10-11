@@ -36,7 +36,7 @@ test('agent invitation binds only the opened page and confirms the actual instan
   ).json()) as Connection;
   const state = await page.evaluate(
     () =>
-      JSON.parse(sessionStorage.getItem('codex-ux:app-instance:video-editor')!) as {
+      JSON.parse(sessionStorage.getItem('openhax:app-instance:video-editor')!) as {
         instance: { id: string };
         bindings: Record<string, unknown>;
       },
@@ -48,7 +48,7 @@ test('agent invitation binds only the opened page and confirms the actual instan
   await expect(other.getByText('Agent invitation', { exact: true }).first()).toBeVisible();
   const otherState = await other.evaluate(
     () =>
-      JSON.parse(sessionStorage.getItem('codex-ux:app-instance:video-editor')!) as {
+      JSON.parse(sessionStorage.getItem('openhax:app-instance:video-editor')!) as {
         bindings: Record<string, unknown>;
       },
   );
@@ -60,7 +60,7 @@ test('agent invitation binds only the opened page and confirms the actual instan
         (
           await page.evaluate(
             () =>
-              JSON.parse(sessionStorage.getItem('codex-ux:app-instance:video-editor')!) as {
+              JSON.parse(sessionStorage.getItem('openhax:app-instance:video-editor')!) as {
                 bindings: Record<string, unknown>;
               },
           )
@@ -160,7 +160,7 @@ test('a late page acknowledgement cannot bind a workspace selected after the req
       .toBe('disconnected');
     const saved = await page.evaluate(
       () =>
-        JSON.parse(sessionStorage.getItem('codex-ux:app-instance:video-editor')!) as {
+        JSON.parse(sessionStorage.getItem('openhax:app-instance:video-editor')!) as {
           bindings: Record<string, unknown>;
         },
     );

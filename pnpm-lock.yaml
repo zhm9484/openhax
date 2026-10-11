@@ -71,19 +71,19 @@ importers:
 
   apps/3d-space:
     dependencies:
-      '@codex-ux/editor-ui':
+      '@openhax/editor-ui':
         specifier: workspace:*
         version: link:../../packages/editor-ui
-      '@codex-ux/library-react':
+      '@openhax/library-react':
         specifier: workspace:*
         version: link:../../packages/library-react
-      '@codex-ux/protocol':
+      '@openhax/protocol':
         specifier: workspace:*
         version: link:../../packages/protocol
-      '@codex-ux/scene-domain':
+      '@openhax/scene-domain':
         specifier: workspace:*
         version: link:../../packages/scene-domain
-      '@codex-ux/sdk':
+      '@openhax/sdk':
         specifier: workspace:*
         version: link:../../packages/sdk
       lucide-react:
@@ -117,22 +117,22 @@ importers:
 
   apps/video-editor:
     dependencies:
-      '@codex-ux/editor-ui':
+      '@openhax/editor-ui':
         specifier: workspace:*
         version: link:../../packages/editor-ui
-      '@codex-ux/library-react':
+      '@openhax/library-react':
         specifier: workspace:*
         version: link:../../packages/library-react
-      '@codex-ux/protocol':
+      '@openhax/protocol':
         specifier: workspace:*
         version: link:../../packages/protocol
-      '@codex-ux/sdk':
+      '@openhax/sdk':
         specifier: workspace:*
         version: link:../../packages/sdk
-      '@codex-ux/video-domain':
+      '@openhax/video-domain':
         specifier: workspace:*
         version: link:../../packages/video-domain
-      '@codex-ux/video-runtime':
+      '@openhax/video-runtime':
         specifier: workspace:*
         version: link:../../packages/video-runtime
       lucide-react:
@@ -162,10 +162,10 @@ importers:
 
   packages/editor-ui:
     dependencies:
-      '@codex-ux/library-react':
+      '@openhax/library-react':
         specifier: workspace:*
         version: link:../library-react
-      '@codex-ux/protocol':
+      '@openhax/protocol':
         specifier: workspace:*
         version: link:../protocol
       lucide-react:
@@ -187,10 +187,10 @@ importers:
 
   packages/library-react:
     dependencies:
-      '@codex-ux/protocol':
+      '@openhax/protocol':
         specifier: workspace:*
         version: link:../protocol
-      '@codex-ux/sdk':
+      '@openhax/sdk':
         specifier: workspace:*
         version: link:../sdk
     devDependencies:
@@ -209,19 +209,19 @@ importers:
 
   packages/local-server:
     dependencies:
-      '@codex-ux/adapter-codex':
+      '@openhax/adapter-codex':
         specifier: workspace:*
         version: link:../adapter-codex
-      '@codex-ux/protocol':
+      '@openhax/protocol':
         specifier: workspace:*
         version: link:../protocol
-      '@codex-ux/scene-domain':
+      '@openhax/scene-domain':
         specifier: workspace:*
         version: link:../scene-domain
-      '@codex-ux/video-domain':
+      '@openhax/video-domain':
         specifier: workspace:*
         version: link:../video-domain
-      '@codex-ux/video-runtime':
+      '@openhax/video-runtime':
         specifier: workspace:*
         version: link:../video-runtime
       '@ffprobe-installer/ffprobe':
@@ -289,13 +289,13 @@ importers:
 
   packages/sdk:
     dependencies:
-      '@codex-ux/protocol':
+      '@openhax/protocol':
         specifier: workspace:*
         version: link:../protocol
 
   packages/video-domain:
     dependencies:
-      '@codex-ux/protocol':
+      '@openhax/protocol':
         specifier: workspace:*
         version: link:../protocol
       parse5:
@@ -307,7 +307,7 @@ importers:
 
   packages/video-runtime:
     dependencies:
-      '@codex-ux/video-domain':
+      '@openhax/video-domain':
         specifier: workspace:*
         version: link:../video-domain
       '@hyperframes/player':

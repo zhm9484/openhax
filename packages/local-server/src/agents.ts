@@ -1,6 +1,6 @@
 import { z } from 'zod';
-import { queueRequest } from '@codex-ux/adapter-codex';
-import type { AgentSessionRef } from '@codex-ux/protocol';
+import { queueRequest } from '@openhax/adapter-codex';
+import type { AgentSessionRef } from '@openhax/protocol';
 import { HttpError } from './errors.ts';
 
 export const collaborationTarget = z.strictObject({

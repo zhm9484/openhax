@@ -3,7 +3,7 @@ import type { chromium as Chromium, Browser } from 'playwright-core';
 import { backgroundBrowser } from '../browser.ts';
 import { access, mkdir, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
-import { clampTime, type Revision } from '@codex-ux/video-domain';
+import { clampTime, type Revision } from '@openhax/video-domain';
 import { videoDirectory } from './files.ts';
 
 export class Thumbnails {

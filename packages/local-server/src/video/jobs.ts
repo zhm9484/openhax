@@ -1,7 +1,7 @@
 import { randomUUID } from 'node:crypto';
 import { access, copyFile, mkdir, readFile, writeFile, rename } from 'node:fs/promises';
 import { extname, join } from 'node:path';
-import type { ExportJob, Revision } from '@codex-ux/video-domain';
+import type { ExportJob, Revision } from '@openhax/video-domain';
 import { HttpError } from '../errors.ts';
 import { prepareVideo, videoDirectory } from './files.ts';
 
@@ -112,8 +112,8 @@ export class RenderJobs {
         job.stage = 'Preparing export tools';
         await this.writeJob(dir, job);
         await prepareExportCapability('hyperframes-export');
-        if (!process.env.CODEX_UX_FFMPEG) await prepareExportCapability('encoder');
-        if (!process.env.CODEX_UX_FFPROBE) await prepareExportCapability('probe');
+        if (!process.env.OPENHAX_FFMPEG) await prepareExportCapability('encoder');
+        if (!process.env.OPENHAX_FFPROBE) await prepareExportCapability('probe');
         job.stage = 'Preparing background browser';
         await this.writeJob(dir, job);
         const browser = await prepareBrowser();

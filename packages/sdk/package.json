@@ -1,5 +1,5 @@
 {
-  "name": "@codex-ux/sdk",
+  "name": "@openhax/sdk",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -8,6 +8,6 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@codex-ux/protocol": "workspace:*"
+    "@openhax/protocol": "workspace:*"
   }
 }

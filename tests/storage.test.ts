@@ -9,7 +9,7 @@ import { VideoStore } from '../packages/local-server/src/video/store.ts';
 import { WorkspaceStore } from '../packages/local-server/src/storage/workspaces.ts';
 
 void test('durable revisions support undo, redo, branching, deduplication and isolation', () => {
-  const root = mkdtempSync(join(tmpdir(), 'codex-ux-storage-'));
+  const root = mkdtempSync(join(tmpdir(), 'openhax-storage-'));
   const workspaces = new WorkspaceStore(root);
   let store = new VideoStore(workspaces);
   try {

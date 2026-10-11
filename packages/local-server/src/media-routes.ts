@@ -5,7 +5,7 @@ import { environments } from './environment.ts';
 import { createRequire } from 'node:module';
 import { dirname, join } from 'node:path';
 import type { IncomingMessage, ServerResponse } from 'node:http';
-import { clampTime, videoSchema, type VideoDocument } from '@codex-ux/video-domain';
+import { clampTime, videoSchema, type VideoDocument } from '@openhax/video-domain';
 import type { VideoServices } from './video/routes.ts';
 import type { Thumbnails } from './video/thumbnails.ts';
 import { prepareVideo, readCandidate, previewCss } from './video/files.ts';

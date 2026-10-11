@@ -1,8 +1,8 @@
 import { Film } from 'lucide-react';
-import { WorkspacePicker } from '@codex-ux/editor-ui';
+import { WorkspacePicker } from '@openhax/editor-ui';
 import { useEffect, useState } from 'react';
-import type { Workspace } from '@codex-ux/protocol';
-import type { BrowserAppInstance } from '@codex-ux/sdk';
+import type { Workspace } from '@openhax/protocol';
+import type { BrowserAppInstance } from '@openhax/sdk';
 import { api, post } from './lib/api';
 import { AppInstanceContext } from './lib/app-instance';
 import { Editor } from './editor/editor';

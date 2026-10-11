@@ -6,7 +6,7 @@ import { join } from 'node:path';
 import { saveAsset } from '../packages/local-server/src/video/assets.ts';
 
 void test('media imports read actual duration and remove rejected files', async () => {
-  const root = await mkdtemp(join(tmpdir(), 'codex-ux-assets-'));
+  const root = await mkdtemp(join(tmpdir(), 'openhax-assets-'));
   try {
     const wav = Buffer.alloc(16044);
     wav.write('RIFF', 0);

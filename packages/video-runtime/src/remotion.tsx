@@ -1,7 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, type ComponentType } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Player, type PlayerRef } from '@remotion/player';
-import type { VideoSource } from '@codex-ux/video-domain';
+import type { VideoSource } from '@openhax/video-domain';
 import { createController, settled } from './controller.ts';
 import type { PreviewWindow } from './types.ts';
 

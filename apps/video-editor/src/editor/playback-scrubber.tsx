@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { formatTime, timeStep } from '@codex-ux/video-domain';
+import { formatTime, timeStep } from '@openhax/video-domain';
 import { usePlaybackDisplay } from '../hooks/use-playback-display';
 import type { PlaybackClock } from '../lib/playback-clock';
 

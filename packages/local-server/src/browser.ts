@@ -6,7 +6,7 @@ import { join, dirname } from 'node:path';
 import { homedir } from 'node:os';
 import { environments } from './environment.ts';
 import { HttpError } from './errors.ts';
-import type { EnvironmentState } from '../../../skills/codex-ux-workspace/scripts/environments.ts';
+import type { EnvironmentState } from '../../../skills/openhax-workspace/scripts/environments.ts';
 const require = createRequire(import.meta.url);
 let ready: { executablePath: string; version: string } | undefined;
 let pending: Promise<NonNullable<typeof ready>> | undefined;
@@ -20,7 +20,7 @@ export const cancelBrowser = () => controller?.abort();
 
 async function findBrowser(download: boolean, signal?: AbortSignal) {
   process.env.PLAYWRIGHT_BROWSERS_PATH ??= join(
-    process.env.CODEX_UX_CACHE_DIR ?? join(homedir(), '.cache/codex-ux'),
+    process.env.OPENHAX_CACHE_DIR ?? join(homedir(), '.cache/openhax'),
     'browsers',
   );
   if (download) {
@@ -37,7 +37,7 @@ async function findBrowser(download: boolean, signal?: AbortSignal) {
       'environment_required',
     );
   }
-  const explicit = process.env.CODEX_UX_CHROME;
+  const explicit = process.env.OPENHAX_CHROME;
   const candidates = explicit
     ? [explicit]
     : [

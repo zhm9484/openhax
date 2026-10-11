@@ -342,7 +342,7 @@ test('focused text timeline retimes, locates, collapses and deletes with undo', 
   await expect(page.getByRole('button', { name: /^(Expand|Collapse) timeline$/ })).toHaveCount(0);
   const block = page.getByRole('button', { name: /^Timeline: Make room/ });
   await expect(block).toHaveAttribute('aria-pressed', 'true');
-  await page.screenshot({ path: '.codex-ux/focused-timeline.png', animations: 'disabled' });
+  await page.screenshot({ path: '.openhax/focused-timeline.png', animations: 'disabled' });
   await block.hover();
   const box = (await block.boundingBox())!;
   await page.mouse.move(box.x + 20, box.y + 10);
@@ -410,7 +410,7 @@ test('tool island moves, remembers its position, opens adjacent notes and suppor
   const narrow = (await page.locator('.tool-island').boundingBox())!;
   expect(narrow.x + narrow.width).toBeLessThanOrEqual(380);
   expect(narrow.y + narrow.height).toBeLessThanOrEqual(834);
-  await page.screenshot({ path: '.codex-ux/editor-narrow.png' });
+  await page.screenshot({ path: '.openhax/editor-narrow.png' });
 });
 
 test('background revisions wait for unfinished canvas typing', async ({ page, request }) => {

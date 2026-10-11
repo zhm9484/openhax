@@ -1,7 +1,7 @@
 import { useId, useState, type ComponentProps, type ReactNode } from 'react';
 import { ChevronDown, GripVertical, X } from 'lucide-react';
-import { FileIcon, MentionInput } from '@codex-ux/library-react';
-import type { LibraryReference } from '@codex-ux/protocol';
+import { FileIcon, MentionInput } from '@openhax/library-react';
+import type { LibraryReference } from '@openhax/protocol';
 import { IconButton } from './ui';
 import { Modal } from './modal';
 

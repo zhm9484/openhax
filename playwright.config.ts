@@ -3,7 +3,7 @@ import { resolve } from 'node:path';
 import { randomUUID } from 'node:crypto';
 
 const executablePath =
-  process.env.CODEX_UX_CHROME ??
+  process.env.OPENHAX_CHROME ??
   (process.platform === 'darwin'
     ? '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
     : null);
@@ -22,8 +22,8 @@ export default defineConfig({
     command: 'pnpm build && pnpm start',
     url: 'http://127.0.0.1:5197/api/health',
     env: {
-      CODEX_UX_PORT: '5197',
-      CODEX_UX_DATA_DIR: resolve('.codex-ux/browser-tests', randomUUID()),
+      OPENHAX_PORT: '5197',
+      OPENHAX_DATA_DIR: resolve('.openhax/browser-tests', randomUUID()),
     },
     timeout: 30000,
     reuseExistingServer: false,

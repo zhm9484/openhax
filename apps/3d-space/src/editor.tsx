@@ -11,11 +11,11 @@ import {
   anchorBelow,
   useFullscreen,
   type FloatingAnchor,
-} from '@codex-ux/editor-ui';
-import { LibraryBrowser } from '@codex-ux/library-react';
+} from '@openhax/editor-ui';
+import { LibraryBrowser } from '@openhax/library-react';
 import { useEffect, useEffectEvent, useRef, useState } from 'react';
-import type { BrowserAppInstance } from '@codex-ux/sdk';
-import type { Workspace } from '@codex-ux/protocol';
+import type { BrowserAppInstance } from '@openhax/sdk';
+import type { Workspace } from '@openhax/protocol';
 import {
   ArrowUp,
   MessageCircle,

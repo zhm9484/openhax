@@ -7,14 +7,14 @@ import { join, resolve } from 'node:path';
 import { tmpdir } from 'node:os';
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
-import { locateService } from '../skills/codex-ux-workspace/scripts/discovery.ts';
+import { locateService } from '../skills/openhax-workspace/scripts/discovery.ts';
 
 const execute = promisify(execFile);
 void test('discovery validates service identity, rejects invalid records and follows an address changed during health checking', async (t) => {
   const root = await mkdtemp(join(tmpdir(), 'ux-discovery-'));
   const path = join(root, 'runtime.json');
   let health: Record<string, unknown> = {
-    service: 'codex-ux',
+    service: 'openhax',
     version: 3,
     dataRoot: root,
     runtimeBuild: 'test',
@@ -74,7 +74,7 @@ void test('discovery validates service identity, rejects invalid records and fol
 
 void test('locate CLI provides a safe recovery command for missing service metadata without starting a process', async () => {
   const root = await mkdtemp(join(tmpdir(), 'ux-discovery-cli-'));
-  const launcher = resolve('skills/codex-ux-workspace/scripts/workspace.ts');
+  const launcher = resolve('skills/openhax-workspace/scripts/workspace.ts');
   try {
     await assert.rejects(
       execute(process.execPath, [launcher, 'locate', '--data-dir', root]),

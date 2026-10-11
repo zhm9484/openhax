@@ -3,7 +3,7 @@ import {
   updateHyperframesTiming,
   type TimelineItem,
   type VideoDocument,
-} from '@codex-ux/video-domain';
+} from '@openhax/video-domain';
 import type { CanvasText } from '../canvas/text-model';
 import { timelineItems } from './timeline-items';
 export function updateElementTiming(doc: VideoDocument, item: TimelineItem, next: TimelineItem) {

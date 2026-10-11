@@ -16,7 +16,7 @@ import {
   sourcePath,
   type SceneSnapshot,
   type SourceFile,
-} from '@codex-ux/scene-domain';
+} from '@openhax/scene-domain';
 import { contained } from '../storage/paths.ts';
 import { HttpError } from '../errors.ts';
 

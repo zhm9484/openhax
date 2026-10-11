@@ -53,13 +53,13 @@ Reference paths do not make external resources part of a saved/exportable video 
 - Backend: Workspace `library.sqlite` stores location registrations and reference metadata;
   `files/attachments/` stores browser-provided bytes. The app database stores its own association
   between a note and those references.
-- React: `@codex-ux/library-react` exports `LibraryBrowser`, `MentionInput`, `AttachmentList`,
+- React: `@openhax/library-react` exports `LibraryBrowser`, `MentionInput`, `AttachmentList`,
   `FileIcon`, `LibraryIcon`, and a separately imported `styles.css`. Hosts provide the SDK client,
   modal, draft state and submission callback. Both apps integrate through the shared
-  `@codex-ux/editor-ui` composer. Time and spatial context remain app-owned. `MentionInput` accepts
-  a host placeholder, optional footer actions and opt-in image thumbnails below the text. Both
-  editor composers enable those thumbnails; they open the existing attachment preview and follow the
-  same reference tokens and undo history. Hosts combine attachments with draft actions without
+  `@openhax/editor-ui` composer. Time and spatial context remain app-owned. `MentionInput` accepts a
+  host placeholder, optional footer actions and opt-in image thumbnails below the text. Both editor
+  composers enable those thumbnails; they open the existing attachment preview and follow the same
+  reference tokens and undo history. Hosts combine attachments with draft actions without
   duplicating input or upload controls.
 
 There is no automatic attachment/reference garbage collection, content indexing or material

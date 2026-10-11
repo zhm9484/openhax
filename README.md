@@ -1,30 +1,63 @@
-# Codex UX
+# openhax
 
-**A shared workspace for people and agents.**
+**Open Human Agent Experience**
 
-An open collaboration protocol and a collection of local web apps. People select, annotate, and
-edit; agents read the context and return changes to the same workspace. Preset apps can be
-customized through code and saved for later use.
+Interactive scenes for people and agents. Different tasks need different ways to communicate.
+openhax brings selections, regions, time and space into the conversation when words alone are not
+direct, precise or efficient enough.
+
+## Vision
+
+People express their goals and work with an agent to move the task forward. The agent organizes
+tools and execution. An interactive scene gives both sides a shared view: people select, enter, mark
+and explicitly submit information; the agent reads that context and presents or changes the result.
+A scene can support a decision, an explanation or an exploration as well as an edit.
+
+```mermaid
+flowchart LR
+    human[Person] <-->|Language| agent[Agent]
+    human <-->|Explicit input| scene[Task-specific scene]
+    agent <-->|Context and operations| scene
+```
+
+As the task changes, the interaction can take a different form while retaining the context it needs.
+Workspaces are an internal way to group files and app state; they do not define the product
+experience or imply one workspace per goal. The current scope uses deliberate selections, input,
+annotations and submissions. It does not infer intent from passive clicks, pointer movement or
+viewing behavior.
+
+The engineering direction is a small, open collaboration contract that makes more scenes easier to
+build. Each app should define its own context, operations and explicit user inputs. Shared
+infrastructure should handle identity, routing, references and operation results without imposing a
+universal domain model. The current implementation and remaining boundaries are described in
+[Architecture](docs/canonical/architecture.md).
 
 ## Status
 
-The first preset is a local video collaboration container for Hyperframes source, Remotion source
-and MP4/WebM files. It provides playback, source updates, supported HTML text edits, assets,
-anchored change/transition notes, saved history, export and existing-task Codex delivery. The
-minimal collaboration contract and browser instance helpers are implemented. Apps share file-based
-workspaces; agent bindings are independent per page and workspace. 3D Space adds an immersive
-Three.js viewport, direct object manipulation, model imports and spatial feedback. Agents can build
-complete worlds with ordinary source code. Automatic custom app builds remain reserved.
+Two local apps exercise the collaboration model. Video Editor supports Hyperframes source, Remotion
+source and MP4/WebM files, with playback, selected HTML edits, time/region feedback, history and
+export. 3D Space provides a Three.js viewport, object manipulation, model imports and spatial
+feedback. These are the first interaction scenes, not the limit of the project.
+
+Shared identity, page/session pairing, material references and browser helpers are implemented. Both
+apps capture explicit feedback, route it to an existing Codex task and accept checked changes. Their
+context and operation APIs remain app-specific. A common capability-discovery interface, generic
+input/action contract, automatic scene switching and custom app build management are not
+implemented. Other agents can use source and HTTP workflows; feedback delivery currently supports
+Codex only.
 
 ## Install and use
 
 With Node.js 24 and npm available, install both skills for your agent:
 
 ```sh
-npx skills add zhm9484/codex-ux --skill codex-ux-workspace codex-ux-video-editor
+npx skills add zhm9484/openhax --skill openhax-workspace openhax-video-editor
 ```
 
-For 3D work, replace `codex-ux-video-editor` with `codex-ux-3d-space`.
+Install both skills from the same ref. To try an unpublished checkout, use
+`npx skills add . --skill openhax-workspace openhax-video-editor` from this repository.
+
+For 3D work, replace `openhax-video-editor` with `openhax-3d-space`.
 
 Ask your agent to use Video Editor or 3D Space. Its skill includes the built web app; the Workspace
 skill prepares and starts the matching local service and connects the page to the current Codex
@@ -65,8 +98,8 @@ docs/
 ```
 
 All project code is TypeScript. Repository content is in English. Packages keep video behavior,
-portable contracts, system access and Codex delivery separate. User data defaults to `~/.codex-ux/`.
-Use `pnpm build && pnpm start` to serve the app builds from their `skills/codex-ux-*/dist/`
+portable contracts, system access and Codex delivery separate. Local data defaults to `~/.openhax/`.
+Use `pnpm build && pnpm start` to serve the app builds from their `skills/openhax-*/dist/`
 directories. Builds remain separate from workspace files and app state. Chrome is required for
 thumbnails and rendering; see the runtime settings in the canonical docs.
 

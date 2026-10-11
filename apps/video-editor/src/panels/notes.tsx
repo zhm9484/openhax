@@ -1,5 +1,5 @@
-import type { LibraryReference } from '@codex-ux/protocol';
-import { AttachmentList, MentionInput } from '@codex-ux/library-react';
+import type { LibraryReference } from '@openhax/protocol';
+import { AttachmentList, MentionInput } from '@openhax/library-react';
 import { useState } from 'react';
 import {
   ArrowUp,
@@ -11,11 +11,11 @@ import {
   StickyNote,
   Trash2,
 } from 'lucide-react';
-import { formatTime, type Note } from '@codex-ux/video-domain';
+import { formatTime, type Note } from '@openhax/video-domain';
 import type { EditorState } from '../hooks/use-editor';
-import { useIslandPosition } from '@codex-ux/editor-ui';
+import { useIslandPosition } from '@openhax/editor-ui';
 import { EmptyState } from '../components/empty-state';
-import { IconButton } from '@codex-ux/editor-ui';
+import { IconButton } from '@openhax/editor-ui';
 
 export function NoteCard({
   note,

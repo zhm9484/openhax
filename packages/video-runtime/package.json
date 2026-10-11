@@ -1,5 +1,5 @@
 {
-  "name": "@codex-ux/video-runtime",
+  "name": "@openhax/video-runtime",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -10,7 +10,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@codex-ux/video-domain": "workspace:*",
+    "@openhax/video-domain": "workspace:*",
     "@hyperframes/player": "0.8.30",
     "@remotion/player": "4.0.522",
     "remotion": "4.0.522",

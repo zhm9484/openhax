@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import type { LibraryEntry, LibraryReference, LibrarySource } from '@codex-ux/protocol';
-import type { WorkspaceLibrary, LocalDirectory } from '@codex-ux/sdk';
+import type { LibraryEntry, LibraryReference, LibrarySource } from '@openhax/protocol';
+import type { WorkspaceLibrary, LocalDirectory } from '@openhax/sdk';
 import { FileIcon, LibraryIcon } from './file-icon';
 import { AttachmentList } from './attachments';
 

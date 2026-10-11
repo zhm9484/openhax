@@ -1,7 +1,7 @@
 import { Download, Film } from 'lucide-react';
-import { EditorHeader } from '@codex-ux/editor-ui';
-import type { VideoProject } from '@codex-ux/video-domain';
-import type { Workspace } from '@codex-ux/protocol';
+import { EditorHeader } from '@openhax/editor-ui';
+import type { VideoProject } from '@openhax/video-domain';
+import type { Workspace } from '@openhax/protocol';
 interface HeaderProps {
   onAgent: () => void;
   onFiles: () => void;

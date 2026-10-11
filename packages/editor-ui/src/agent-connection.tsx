@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { AgentSessionRef } from '@codex-ux/protocol';
+import type { AgentSessionRef } from '@openhax/protocol';
 
 export function AgentConnection({
   session,

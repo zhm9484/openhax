@@ -1,4 +1,4 @@
-import type { AgentSessionRef, AppInstance, CollaborationTarget } from '@codex-ux/protocol';
+import type { AgentSessionRef, AppInstance, CollaborationTarget } from '@openhax/protocol';
 import { InstanceConnections } from './connections.ts';
 export { InstanceConnections } from './connections.ts';
 
@@ -93,7 +93,7 @@ async function claim(id: string): Promise<boolean> {
   if (!navigator.locks) return false;
   return new Promise<boolean>((resolve, reject) => {
     void navigator.locks
-      .request(`codex-ux:instance:${id}`, { ifAvailable: true }, (lock) => {
+      .request(`openhax:instance:${id}`, { ifAvailable: true }, (lock) => {
         if (!lock) {
           resolve(false);
           return;
@@ -108,7 +108,7 @@ async function claim(id: string): Promise<boolean> {
 }
 
 export async function openAppInstance(appId: string): Promise<BrowserAppInstance> {
-  const key = `codex-ux:app-instance:${appId}`;
+  const key = `openhax:app-instance:${appId}`;
   const saved = restored(key, appId);
   if (saved && (await claim(saved.instance.id))) return new BrowserAppInstance(saved, key);
   const state: InstanceState = {

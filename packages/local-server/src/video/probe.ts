@@ -8,17 +8,17 @@ const require = createRequire(import.meta.url);
 export function mediaBinaries() {
   return {
     ffmpeg:
-      process.env.CODEX_UX_FFMPEG ??
+      process.env.OPENHAX_FFMPEG ??
       environments.binaryPath('ffmpeg') ??
       (require('ffmpeg-static') as string),
     ffprobe:
-      process.env.CODEX_UX_FFPROBE ??
+      process.env.OPENHAX_FFPROBE ??
       environments.binaryPath('ffprobe') ??
       (require('@ffprobe-installer/ffprobe') as { path: string }).path,
   };
 }
 async function probeBinary() {
-  if (process.env.CODEX_UX_FFPROBE) return process.env.CODEX_UX_FFPROBE;
+  if (process.env.OPENHAX_FFPROBE) return process.env.OPENHAX_FFPROBE;
   await environments.ensure('probe');
   return (
     environments.binaryPath('ffprobe') ??

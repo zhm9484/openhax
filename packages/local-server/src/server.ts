@@ -49,8 +49,8 @@ export async function startServer(
       if (stopping) throw new HttpError(503, 'Service is stopping.');
       if (path === '/api/service/stop' && req.method === 'POST') {
         if (
-          !process.env.CODEX_UX_CONTROL ||
-          req.headers['x-codex-ux-control'] !== process.env.CODEX_UX_CONTROL
+          !process.env.OPENHAX_CONTROL ||
+          req.headers['x-openhax-control'] !== process.env.OPENHAX_CONTROL
         )
           throw new HttpError(403, 'Service ownership could not be verified.');
         if (
@@ -74,17 +74,17 @@ export async function startServer(
       }
       if (path === '/api/health') {
         json(res, {
-          service: 'codex-ux',
+          service: 'openhax',
           version: 3,
           dataRoot: root,
           pid: process.pid,
-          mode: process.env.CODEX_UX_RUNTIME_DIR ? 'installed' : 'development',
+          mode: process.env.OPENHAX_RUNTIME_DIR ? 'installed' : 'development',
           busy:
             environments.busy ||
             browserState.state === 'preparing' ||
             !!videoValue?.services.jobs.busy ||
             active > 0,
-          runtimeBuild: process.env.CODEX_UX_RUNTIME_BUILD ?? 'development',
+          runtimeBuild: process.env.OPENHAX_RUNTIME_BUILD ?? 'development',
         });
         return;
       }
@@ -119,7 +119,7 @@ export async function startServer(
           text.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('"', '&quot;');
         res.setHeader('Content-Type', 'text/html');
         res.end(
-          `<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Codex UX</title><body><h1>Codex UX</h1><ul>${apps.map((app) => `<li><a href="/apps/${app.id}/">${escape(app.name)}</a></li>`).join('')}</ul></body></html>`,
+          `<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>openhax · Open Human Agent Experience</title><body><h1>openhax</h1><p>Open Human Agent Experience</p><p>Interactive scenes for people and agents.</p><ul>${apps.map((app) => `<li><a href="/apps/${app.id}/">${escape(app.name)}</a></li>`).join('')}</ul></body></html>`,
         );
         return;
       }

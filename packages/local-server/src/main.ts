@@ -29,12 +29,12 @@ try {
     runtimeBuild?: string;
   };
   if (
-    info.service === 'codex-ux' &&
+    info.service === 'openhax' &&
     info.version === 3 &&
     info.dataRoot === dataRoot &&
-    info.runtimeBuild === (process.env.CODEX_UX_RUNTIME_BUILD ?? 'development')
+    info.runtimeBuild === (process.env.OPENHAX_RUNTIME_BUILD ?? 'development')
   ) {
-    console.log(`Codex UX is already running at ${saved.origin}`);
+    console.log(`openhax is already running at ${saved.origin}`);
     process.exit(0);
   }
 } catch {
@@ -45,7 +45,7 @@ try {
   try {
     process.kill(old, 0);
     throw new Error(
-      `Codex UX is already running (PID ${old}). See ${join(dataRoot, 'runtime.json')}.`,
+      `openhax is already running (PID ${old}). See ${join(dataRoot, 'runtime.json')}.`,
     );
   } catch (e) {
     if (!(e instanceof Error) || !('code' in e) || e.code !== 'ESRCH') throw e;
@@ -58,7 +58,7 @@ const handle = await open(lock, 'wx');
 await handle.writeFile(String(process.pid));
 await handle.close();
 try {
-  process.env.CODEX_UX_CONTROL = randomUUID();
+  process.env.OPENHAX_CONTROL = randomUUID();
   const dev = process.argv.includes('--dev');
   const app = await startServer(dataRoot, port || savedPort, dev).catch((error: unknown) => {
     if (
@@ -76,14 +76,14 @@ try {
   await writeFile(
     stagedRuntime,
     JSON.stringify(
-      { origin, pid: process.pid, dataRoot, control: process.env.CODEX_UX_CONTROL },
+      { origin, pid: process.pid, dataRoot, control: process.env.OPENHAX_CONTROL },
       null,
       2,
     ),
   );
   await rename(stagedRuntime, join(dataRoot, 'runtime.json'));
   console.log(
-    `Codex UX · ${origin}\n${app.apps.map((hosted) => `${hosted.name} · ${origin}/apps/${hosted.id}/`).join('\n')}\nLocal data · ${dataRoot}`,
+    `openhax · ${origin}\n${app.apps.map((hosted) => `${hosted.name} · ${origin}/apps/${hosted.id}/`).join('\n')}\nLocal data · ${dataRoot}`,
   );
   let closing = false;
   const close = () => {

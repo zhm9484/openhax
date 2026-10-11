@@ -63,11 +63,11 @@ void test('attachment-backed requests capture paths once and reject changed file
   const workspaces = new WorkspaceStore(root),
     library = new LibraryStore(workspaces),
     store = new VideoStore(workspaces);
-  const previous = process.env.CODEX_UX_CODEX_BIN;
+  const previous = process.env.OPENHAX_CODEX_BIN;
   try {
     const fake = join(root, 'fake-codex');
     await writeFile(fake, '#!/bin/sh\nexit 0\n', { mode: 0o755 });
-    process.env.CODEX_UX_CODEX_BIN = fake;
+    process.env.OPENHAX_CODEX_BIN = fake;
     const projects = new VideoProjects(root, store);
     const collaboration = new VideoCollaboration(
       store,
@@ -110,8 +110,8 @@ void test('attachment-backed requests capture paths once and reject changed file
     await assert.rejects(collaboration.submit(video.workspaceId, [id], target), /changed/);
     assert.equal(store.get(video.workspaceId).notes[0]!.requestId, null);
   } finally {
-    if (previous === undefined) delete process.env.CODEX_UX_CODEX_BIN;
-    else process.env.CODEX_UX_CODEX_BIN = previous;
+    if (previous === undefined) delete process.env.OPENHAX_CODEX_BIN;
+    else process.env.OPENHAX_CODEX_BIN = previous;
     library.close();
     store.close();
     await rm(root, { recursive: true, force: true });

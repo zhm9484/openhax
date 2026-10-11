@@ -3,7 +3,7 @@ import test from 'node:test';
 import { mkdtemp, mkdir, writeFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { delimiter, join } from 'node:path';
-import { installDependencies } from '../skills/codex-ux-workspace/scripts/install.ts';
+import { installDependencies } from '../skills/openhax-workspace/scripts/install.ts';
 
 void test('launcher runs npm shims in paths with spaces and propagates install failures', async (t) => {
   const root = await mkdtemp(join(tmpdir(), 'ux install & cache '));

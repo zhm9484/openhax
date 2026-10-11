@@ -87,7 +87,7 @@ for (const embedded of [false, true]) {
     );
     const paused = Number(await progress.inputValue());
     await page.screenshot({
-      path: `.codex-ux/video-fullscreen-${embedded ? 'portrait' : 'landscape'}.png`,
+      path: `.openhax/video-fullscreen-${embedded ? 'portrait' : 'landscape'}.png`,
       animations: 'disabled',
     });
     if (embedded) await page.keyboard.press('Escape');

@@ -10,14 +10,14 @@ import { VideoProjects } from '../packages/local-server/src/sources/projects.ts'
 import { VideoCollaboration } from '../packages/local-server/src/video/collaboration.ts';
 
 void test('a queued request publishes source edits once and refuses a stale candidate', async () => {
-  const root = await mkdtemp(join(tmpdir(), 'codex-ux-agent-'));
+  const root = await mkdtemp(join(tmpdir(), 'openhax-agent-'));
   const workspaces = new WorkspaceStore(root);
   const store = new VideoStore(workspaces);
-  const previous = process.env.CODEX_UX_CODEX_BIN;
+  const previous = process.env.OPENHAX_CODEX_BIN;
   try {
     const executable = join(root, 'fake-codex');
     await writeFile(executable, '#!/bin/sh\nprintf "%s\\n" "$@"\n', { mode: 0o755 });
-    process.env.CODEX_UX_CODEX_BIN = executable;
+    process.env.OPENHAX_CODEX_BIN = executable;
     const projects = new VideoProjects(root, store);
     const collaboration = new VideoCollaboration(store, root, 'http://127.0.0.1:5173', projects);
     const workspace = await projects.open(workspaces.create('Agent test').id);
@@ -81,8 +81,8 @@ void test('a queued request publishes source edits once and refuses a stale cand
     );
     assert.equal(store.get(workspace.workspaceId).name, 'Keep my edit');
   } finally {
-    if (previous === undefined) delete process.env.CODEX_UX_CODEX_BIN;
-    else process.env.CODEX_UX_CODEX_BIN = previous;
+    if (previous === undefined) delete process.env.OPENHAX_CODEX_BIN;
+    else process.env.OPENHAX_CODEX_BIN = previous;
     store.close();
     await rm(root, { recursive: true, force: true });
   }

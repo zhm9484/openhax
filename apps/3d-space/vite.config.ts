@@ -33,5 +33,5 @@ export default defineConfig({
   base: '/apps/3d-space/',
   optimizeDeps: { exclude: ['three'] },
   server: { preTransformRequests: false },
-  build: { outDir: '../../skills/codex-ux-3d-space/dist', emptyOutDir: true },
+  build: { outDir: '../../skills/openhax-3d-space/dist', emptyOutDir: true },
 });

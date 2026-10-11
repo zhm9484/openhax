@@ -10,7 +10,7 @@ import {
   operationSchema,
   sourcePath,
   vec3,
-} from '@codex-ux/scene-domain';
+} from '@openhax/scene-domain';
 import type { SceneProjects } from './projects.ts';
 import type { SceneCollaboration } from './collaboration.ts';
 import { json, readBody, readJson } from '../http.ts';

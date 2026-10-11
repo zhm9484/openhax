@@ -1,7 +1,7 @@
 ---
-name: codex-ux-video-editor
+name: openhax-video-editor
 description:
-  Create, review, and revise videos with the local Codex UX Video Editor, including Hyperframes
+  Create, review, and revise videos with the local openhax Video Editor, including Hyperframes
   projects, Remotion components, and MP4/WebM files. Use when users want video collaboration, time
   or region feedback, source previews, or revisions in Video Editor. Prefer Hyperframes for new
   compositions unless the user requests Remotion; preserve the engine of existing projects.
@@ -16,15 +16,15 @@ supported HTML text.
 
 ## Required Workspace skill
 
-**Read the installed `codex-ux-workspace` skill before using the app.** It defines Workspace
+**Read the installed `openhax-workspace` skill before using the app.** It defines Workspace
 ownership, service startup, and connecting this app instance to the current conversation. When
-installed beside this skill, its entry is [Workspace SKILL.md](../codex-ux-workspace/SKILL.md).
+installed beside this skill, its entry is [Workspace SKILL.md](../openhax-workspace/SKILL.md).
 Resolve the installed skill by name if the agent stores skills in different locations.
 
 If absent, install the companion from the same repository/ref as this skill. The public pair is:
 
 ```sh
-npx skills add zhm9484/codex-ux --skill codex-ux-workspace codex-ux-video-editor
+npx skills add zhm9484/openhax --skill openhax-workspace openhax-video-editor
 ```
 
 For branch or local installations, use that same source for both. Do not silently mix releases. The

@@ -1,6 +1,6 @@
 import { hyperframesBindings, editHyperframesText } from './hyperframes-text';
-import { textElementSchema, type TextElement, type VideoDocument } from '@codex-ux/video-domain';
-import type { Region } from '@codex-ux/protocol';
+import { textElementSchema, type TextElement, type VideoDocument } from '@openhax/video-domain';
+import type { Region } from '@openhax/protocol';
 
 export interface CanvasText {
   clip: TextElement;

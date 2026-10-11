@@ -1,4 +1,4 @@
-import { ToolIsland as SharedToolIsland } from '@codex-ux/editor-ui';
+import { ToolIsland as SharedToolIsland } from '@openhax/editor-ui';
 import type { EditorState } from '../hooks/use-editor';
 export function ToolIsland({
   state,

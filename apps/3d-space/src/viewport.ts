@@ -7,7 +7,7 @@ import type {
   SceneAnchor,
   SceneProject,
   Vec3,
-} from '@codex-ux/scene-domain';
+} from '@openhax/scene-domain';
 import { Stage, place, placementOf, stageKey } from './stage';
 
 export type Tool = 'move' | 'rotate' | 'scale';

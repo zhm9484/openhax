@@ -4,9 +4,9 @@ import { mkdtemp, mkdir, readFile, writeFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { createHash } from 'node:crypto';
-import { Environments } from '../skills/codex-ux-workspace/scripts/environments.ts';
-import { prepareRuntime } from '../skills/codex-ux-workspace/scripts/runtime.ts';
-import { acquireLock } from '../skills/codex-ux-workspace/scripts/lock.ts';
+import { Environments } from '../skills/openhax-workspace/scripts/environments.ts';
+import { prepareRuntime } from '../skills/openhax-workspace/scripts/runtime.ts';
+import { acquireLock } from '../skills/openhax-workspace/scripts/lock.ts';
 
 void test('capability cache is shared across source builds, independent of video, and retries explicitly', async (t) => {
   const root = await mkdtemp(join(tmpdir(), 'ux runtime & '));

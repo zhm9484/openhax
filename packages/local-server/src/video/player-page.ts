@@ -1,4 +1,4 @@
-import type { VideoDocument } from '@codex-ux/video-domain';
+import type { VideoDocument } from '@openhax/video-domain';
 const safeJson = (data: unknown) => JSON.stringify(data).replaceAll('<', '\\u003c');
 const earlyErrors = `<script>addEventListener('error',function(event){window.__videoError=event.message||'A preview resource could not load.'},true);addEventListener('unhandledrejection',function(event){window.__videoError=String(event.reason&&event.reason.message||event.reason)});</script>`;
 export function playerPage(doc: VideoDocument, css = '') {

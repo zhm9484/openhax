@@ -4,8 +4,8 @@ Start here for an authoritative overview of the current project. These documents
 behavior, feature designs, architecture, and operating conventions. Keep them in sync with changes
 to the project; maintenance rules are in [AGENTS.md](../../AGENTS.md).
 
-- [Architecture](architecture.md): workspace/app/session concepts, storage ownership, module
-  boundaries and development commands.
+- [Architecture](architecture.md): product intent, current protocol boundaries,
+  workspace/app/session concepts, storage ownership, module boundaries and development commands.
 - [Video editor](video-editor.md): editing, responsive UI, collaboration and export.
 - [3D Space](3d-space.md): immersive 3D editing, model imports, Three.js source and spatial
   feedback.

@@ -8,11 +8,11 @@ import { fileURLToPath } from 'node:url';
 const args = process.argv.slice(2);
 if (args.includes('--help') || args[0] === 'help' || !args.length) {
   console.log(
-    'Codex UX Workspace\nCommands: start --app APP_JSON, locate, inspect, stop, restart --app APP_JSON, preflight, prepare --capability NAME, workspaces, create --name NAME, connect --workspace ID --app APP_ID, status --code CODE, doctor.\nOptions: --data-dir PATH, --port PORT, --session ID.\nApp opening does not require video export tools or a background browser.',
+    'openhax Workspace\nCommands: start --app APP_JSON, locate, inspect, stop, restart --app APP_JSON, preflight, prepare --capability NAME, workspaces, create --name NAME, connect --workspace ID --app APP_ID, status --code CODE, doctor.\nOptions: --data-dir PATH, --port PORT, --session ID.\nApp opening does not require video export tools or a background browser.',
   );
   process.exit(0);
 }
-const cache = process.env.CODEX_UX_CACHE_DIR || join(homedir(), '.cache/codex-ux');
+const cache = process.env.OPENHAX_CACHE_DIR || join(homedir(), '.cache/openhax');
 const saved = join(cache, 'node-executable');
 let executable = process.execPath;
 const supported = (path) =>

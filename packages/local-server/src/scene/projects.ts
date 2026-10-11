@@ -5,7 +5,7 @@ import {
   type SceneOperation,
   type SceneProject,
   type SceneSnapshot,
-} from '@codex-ux/scene-domain';
+} from '@openhax/scene-domain';
 import type { SceneStore } from './store.ts';
 import { capture, checkout, hash, scan, starterCode, starterScene } from './files.ts';
 import { prepare } from './build.ts';

@@ -3,7 +3,7 @@ import type {
   LibraryReference,
   LibraryEntry,
   LibrarySearch,
-} from '@codex-ux/protocol';
+} from '@openhax/protocol';
 
 export interface LocalDirectory {
   path: string;

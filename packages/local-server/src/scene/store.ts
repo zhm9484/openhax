@@ -2,7 +2,7 @@ import { DatabaseSync } from 'node:sqlite';
 import { existsSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { randomUUID } from 'node:crypto';
-import type { SceneRevision, SceneSnapshot } from '@codex-ux/scene-domain';
+import type { SceneRevision, SceneSnapshot } from '@openhax/scene-domain';
 import type { WorkspaceStore } from '../storage/workspaces.ts';
 import { HttpError } from '../errors.ts';
 

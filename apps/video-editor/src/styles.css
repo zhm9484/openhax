@@ -1,5 +1,5 @@
-@import '@codex-ux/library-react/styles.css';
-@import '@codex-ux/editor-ui/styles.css';
+@import '@openhax/library-react/styles.css';
+@import '@openhax/editor-ui/styles.css';
 @import './styles/controls.css';
 @import './styles/layout.css';
 @import './styles/panels.css';

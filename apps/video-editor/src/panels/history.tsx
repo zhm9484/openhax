@@ -1,5 +1,5 @@
 import { Clock3, Check, ArrowUpLeft, Columns2 } from 'lucide-react';
-import type { Revision, VideoProject } from '@codex-ux/video-domain';
+import type { Revision, VideoProject } from '@openhax/video-domain';
 import { api } from '../lib/api';
 import { useState } from 'react';
 

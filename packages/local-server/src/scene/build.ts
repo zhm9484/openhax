@@ -5,7 +5,7 @@ import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import { build } from 'esbuild';
 import { z } from 'zod';
-import type { SceneSnapshot } from '@codex-ux/scene-domain';
+import type { SceneSnapshot } from '@openhax/scene-domain';
 import { hash, materialize } from './files.ts';
 import { HttpError } from '../errors.ts';
 

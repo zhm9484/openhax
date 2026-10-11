@@ -5,7 +5,7 @@ import {
   replaceHtmlText,
   type TextElement,
   type VideoDocument,
-} from '@codex-ux/video-domain';
+} from '@openhax/video-domain';
 import type { CanvasText, TextBinding } from './text-model';
 
 export function hyperframesBindings(frame: Document, doc: VideoDocument) {

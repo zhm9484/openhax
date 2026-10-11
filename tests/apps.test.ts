@@ -7,7 +7,7 @@ import { startServer } from '../packages/local-server/src/server.ts';
 import { validateApps } from '../packages/local-server/src/apps.ts';
 
 void test('multiple external app bundles share a workspace directory without copying their code into it', async () => {
-  const root = await mkdtemp(join(tmpdir(), 'codex-ux-apps-'));
+  const root = await mkdtemp(join(tmpdir(), 'openhax-apps-'));
   const data = join(root, 'data');
   const port = 0;
   const apps = ['first-app', 'second-app'].map((id) => ({

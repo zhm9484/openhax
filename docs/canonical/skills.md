@@ -4,7 +4,7 @@ The public skills live in `skills/`, separate from repository-development skills
 `.agents/skills/`. Install the pair with Node.js 24 and npm/npx available:
 
 ```sh
-npx skills add zhm9484/codex-ux --skill codex-ux-workspace codex-ux-video-editor
+npx skills add zhm9484/openhax --skill openhax-workspace openhax-video-editor
 ```
 
 The installer can select agents and project/global scope. App and Workspace skills must come from
@@ -14,15 +14,14 @@ installer-specific automatic dependency resolution is assumed.
 
 ## Shipped artifacts
 
-- `codex-ux-workspace` contains the startup/connection CLI and `assets/runtime.json`, a
-  fingerprinted bundle of the service's TypeScript source, workspace packages, pinned package
-  manifests/lockfile, and project license. It does not include platform-specific node_modules or
-  user data.
-- `codex-ux-video-editor` contains its built web application in `dist/`, upstream web license
+- `openhax-workspace` contains the startup/connection CLI and `assets/runtime.json`, a fingerprinted
+  bundle of the service's TypeScript source, workspace packages, pinned package manifests/lockfile,
+  and project license. It does not include platform-specific node_modules or user data.
+- `openhax-video-editor` contains its built web application in `dist/`, upstream web license
   notices, `app.json`, and source/collaboration guidance. Users do not build the frontend after
   installing.
 
-3D Space installs with `--skill codex-ux-workspace codex-ux-3d-space`. Its skill similarly ships
+3D Space installs with `--skill openhax-workspace openhax-3d-space`. Its skill similarly ships
 `dist/`, license notices and `app.json`, plus Three.js source and spatial collaboration guidance.
 Both apps can be registered with the same Workspace runtime; their fingerprints are generated
 together.
@@ -80,21 +79,21 @@ polling. `prepare --capability NAME` provides the same explicit operation for ag
 Background thumbnails may reuse available browser tools but never install them implicitly. Users can
 enable them in Video Editor. An animation export prepares its renderer and browser on demand;
 Remotion preview no longer builds an export bundle. Direct media export copies original bytes.
-Browser preparation validates an explicit `CODEX_UX_CHROME`, a managed browser, or known installed
+Browser preparation validates an explicit `OPENHAX_CHROME`, a managed browser, or known installed
 Chrome/Edge/Chromium paths with a fresh headless profile. If no usable browser exists it downloads
 pinned Playwright Chromium. An invalid explicit path fails with its cause instead of silently
 choosing another browser. Browser failure leaves editing and 3D available. An existing system
 browser is not guaranteed to render identically to the pinned version; export records its version.
 
-Caches default to `~/.cache/codex-ux/` (`CODEX_UX_CACHE_DIR` overrides them), independently of
-`~/.codex-ux/` Workspace data. `installed-apps.json` remembers immutable hosted app paths. The
+Caches default to `~/.cache/openhax/` (`OPENHAX_CACHE_DIR` overrides them), independently of
+`~/.openhax/` Workspace data. `installed-apps.json` remembers immutable hosted app paths. The
 service runs detached with `service.log`; installed skill inputs remain read-only and can be copies
 or symlinks. No automatic cache/Workspace garbage collection is supplied.
 
 `start` returns `state: "ready"`, verified `origin`, `apiBase`, and app `url`; this means the
 service and app shell are available, not that document compilation, connection or export preparation
 has finished. `locate` is read-only verified discovery. Both use the actual bound port: automatic OS
-allocation prefers the last available port; explicit `--port`/`CODEX_UX_PORT` (1024–65535, or 0 for
+allocation prefers the last available port; explicit `--port`/`OPENHAX_PORT` (1024–65535, or 0 for
 automatic) is strict. A matching live service keeps its origin.
 
 `inspect` reports verified PID, mode, build and activity even when the launcher's build differs.
@@ -147,7 +146,7 @@ verifies 3D without video/browser dependencies, offline reuse, failure isolation
 copies only the installed skill folders into a temporary directory, prepares the bundled service,
 opens a real browser connection, imports/renders Remotion, reuses the service, and rejects
 mismatched app versions without changing Workspace data. It requires network access, npm/npx, and
-Chromium; use `CODEX_UX_CACHE_DIR` to reuse a prepared cache. Tests do not send messages to actual
+Chromium; use `OPENHAX_CACHE_DIR` to reuse a prepared cache. Tests do not send messages to actual
 Codex tasks.
 
 CI runs real installed-skills/browser/export checks on Linux, macOS and Windows, in addition to

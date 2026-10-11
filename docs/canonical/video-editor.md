@@ -7,7 +7,7 @@ ordinary files; the editor does not translate those files into a universal clip 
 
 The workspace selector switches this app instance without changing other pages. Workspace names are
 independent of video titles. The header, workspace picker, dialogs, tool island and composer use
-`@codex-ux/editor-ui`, shared with 3D Space. Chat, Notes and app Fullscreen live in a movable
+`@openhax/editor-ui`, shared with 3D Space. Chat, Notes and app Fullscreen live in a movable
 vertical tool island. Agent connection and Library open centered dialogs from the header, alongside
 version history, undo/redo and Export. Library registers local material folders/files shared by this
 Workspace’s apps. Chat and Add note use `@`, file selection, drop and paste to attach references.

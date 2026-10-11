@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useEffectEvent, useRef, useState } from 'react';
-import type { VideoDocument, VideoProject } from '@codex-ux/video-domain';
+import type { VideoDocument, VideoProject } from '@openhax/video-domain';
 import { api, post, videoPath } from '../lib/api';
 
 export function useVideoProject(id: string, deferPreview: () => boolean = () => false) {

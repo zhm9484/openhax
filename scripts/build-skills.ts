@@ -3,7 +3,7 @@ import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import { createRequire } from 'node:module';
 import { buildEnvironments } from './build-environments.ts';
-import { appSnapshot } from '../skills/codex-ux-workspace/scripts/artifacts.ts';
+import { appSnapshot } from '../skills/openhax-workspace/scripts/artifacts.ts';
 
 const root = resolve(import.meta.dirname, '..');
 const files: Record<string, string> = {};
@@ -31,11 +31,11 @@ for (const name of [
   files[`${path}/package.json`] = await readFile(join(root, path, 'package.json'), 'utf8');
   await collect(`${path}/src`);
 }
-await collect('skills/codex-ux-workspace/scripts');
+await collect('skills/openhax-workspace/scripts');
 files['environments.json'] = JSON.stringify(buildEnvironments(files['pnpm-lock.yaml']!));
 const content = JSON.stringify(files);
 const build = createHash('sha256').update(content).digest('hex');
-const workspace = join(root, 'skills/codex-ux-workspace');
+const workspace = join(root, 'skills/openhax-workspace');
 await mkdir(join(workspace, 'assets'), { recursive: true });
 await writeFile(join(workspace, 'assets/runtime.json'), JSON.stringify({ build, files }));
 console.log(`Skills runtime ${build.slice(0, 12)}; app web files are in their skill dist/.`);
@@ -43,7 +43,7 @@ for (const [appId, appName] of [
   ['video-editor', 'Video Editor'],
   ['3d-space', '3D Space'],
 ] as const) {
-  const video = join(root, `skills/codex-ux-${appId}`);
+  const video = join(root, `skills/openhax-${appId}`);
   const appRequire = createRequire(join(root, `apps/${appId}/package.json`));
   const domainRequire = createRequire(join(root, 'packages/video-domain/package.json'));
   const reactRequire = createRequire(appRequire.resolve('react-dom/package.json'));

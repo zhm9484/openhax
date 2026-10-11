@@ -1,5 +1,5 @@
 {
-  "name": "@codex-ux/video-editor",
+  "name": "@openhax/video-editor",
   "version": "0.0.0",
   "private": true,
   "license": "MIT",
@@ -11,15 +11,15 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@codex-ux/protocol": "workspace:*",
-    "@codex-ux/video-domain": "workspace:*",
+    "@openhax/protocol": "workspace:*",
+    "@openhax/video-domain": "workspace:*",
     "lucide-react": "1.41.0",
     "react": "catalog:",
     "react-dom": "catalog:",
-    "@codex-ux/sdk": "workspace:*",
-    "@codex-ux/video-runtime": "workspace:*",
-    "@codex-ux/library-react": "workspace:*",
-    "@codex-ux/editor-ui": "workspace:*"
+    "@openhax/sdk": "workspace:*",
+    "@openhax/video-runtime": "workspace:*",
+    "@openhax/library-react": "workspace:*",
+    "@openhax/editor-ui": "workspace:*"
   },
   "devDependencies": {
     "@types/react": "catalog:",

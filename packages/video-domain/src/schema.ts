@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import type { FeedbackAnchor, LibraryReference } from '@codex-ux/protocol';
+import type { FeedbackAnchor, LibraryReference } from '@openhax/protocol';
 
 export const projectPath = z
   .string()

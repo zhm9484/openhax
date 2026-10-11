@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Check, ChevronDown, ArrowUpRight } from 'lucide-react';
-import type { Workspace } from '@codex-ux/protocol';
+import type { Workspace } from '@openhax/protocol';
 import { FloatingPanel } from './floating-panel';
 import type { FloatingAnchor } from './use-floating-position';
 

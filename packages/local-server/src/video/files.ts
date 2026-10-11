@@ -1,7 +1,7 @@
 import { mkdir, writeFile, readFile, access, rename, rm } from 'node:fs/promises';
 import { join } from 'node:path';
 import { randomUUID } from 'node:crypto';
-import type { Revision, VideoDocument } from '@codex-ux/video-domain';
+import type { Revision, VideoDocument } from '@openhax/video-domain';
 import { writeProject, snapshot, digest } from '../sources/files.ts';
 import { environments } from '../environment.ts';
 import { videoDirectory } from './paths.ts';

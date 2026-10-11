@@ -11,8 +11,8 @@ import type {
 
 test.use({
   launchOptions: {
-    ...(process.env.CODEX_UX_CHROME
-      ? { executablePath: process.env.CODEX_UX_CHROME }
+    ...(process.env.OPENHAX_CHROME
+      ? { executablePath: process.env.OPENHAX_CHROME }
       : process.platform === 'darwin'
         ? { executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' }
         : {}),
@@ -37,7 +37,7 @@ async function open(page: Page, request: APIRequestContext) {
   const path = `/api/workspaces/${workspace.id}/apps/3d-space`;
   const initial = (await (await request.post(path, { data: {} })).json()) as SceneProject;
   await page.goto(`/apps/3d-space/w/${workspace.id}`);
-  await expect(page).toHaveTitle('3D Space · Codex UX');
+  await expect(page).toHaveTitle('3D Space · openhax');
   await expect(page.locator('.app-brand > span').first()).toHaveText('3D Space');
   await expect
     .poll(async () => (await state(page)).revisionId, { timeout: 15000 })

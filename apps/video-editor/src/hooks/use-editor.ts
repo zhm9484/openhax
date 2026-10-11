@@ -1,8 +1,8 @@
-import { WorkspaceLibrary } from '@codex-ux/sdk';
+import { WorkspaceLibrary } from '@openhax/sdk';
 import { useEffect, useEffectEvent, useRef, useState, useMemo } from 'react';
-import { durationOf, clampTime, type TextElement, type Revision } from '@codex-ux/video-domain';
-import type { FeedbackAnchor, Region } from '@codex-ux/protocol';
-import type { FloatingAnchor } from '@codex-ux/editor-ui';
+import { durationOf, clampTime, type TextElement, type Revision } from '@openhax/video-domain';
+import type { FeedbackAnchor, Region } from '@openhax/protocol';
+import type { FloatingAnchor } from '@openhax/editor-ui';
 import { createPlaybackClock } from '../lib/playback-clock';
 import { editSourceText, type CanvasText } from '../canvas/text-model';
 import { deleteElement } from '../editor/element-edits';

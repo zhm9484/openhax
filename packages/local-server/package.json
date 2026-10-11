@@ -1,5 +1,5 @@
 {
-  "name": "@codex-ux/local-server",
+  "name": "@openhax/local-server",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -9,11 +9,11 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@codex-ux/scene-domain": "workspace:*",
+    "@openhax/scene-domain": "workspace:*",
     "three": "0.185.1",
-    "@codex-ux/adapter-codex": "workspace:*",
-    "@codex-ux/protocol": "workspace:*",
-    "@codex-ux/video-domain": "workspace:*",
+    "@openhax/adapter-codex": "workspace:*",
+    "@openhax/protocol": "workspace:*",
+    "@openhax/video-domain": "workspace:*",
     "@hyperframes/core": "0.8.30",
     "@hyperframes/player": "0.8.30",
     "@hyperframes/producer": "0.8.30",
@@ -30,7 +30,7 @@
     "react": "catalog:",
     "react-dom": "catalog:",
     "pnpm": "10.34.5",
-    "@codex-ux/video-runtime": "workspace:*",
+    "@openhax/video-runtime": "workspace:*",
     "esbuild": "0.28.1"
   }
 }

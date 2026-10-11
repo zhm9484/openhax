@@ -21,7 +21,7 @@ import { prepare } from '../packages/local-server/src/scene/build.ts';
 import { capture } from '../packages/local-server/src/scene/files.ts';
 
 async function fixture() {
-  const root = await mkdtemp(join(tmpdir(), 'codex-ux-scene-'));
+  const root = await mkdtemp(join(tmpdir(), 'openhax-scene-'));
   const workspaces = new WorkspaceStore(root);
   const store = new SceneStore(workspaces);
   const library = new LibraryStore(workspaces);
@@ -196,7 +196,7 @@ void test('scene snapshots reject symlink escapes and dependency drift', async (
 
 void test('scene feedback snapshots its target and candidate, publishes once, and rejects stale publication', async () => {
   const f = await fixture();
-  const previousCli = process.env.CODEX_UX_CODEX_BIN;
+  const previousCli = process.env.OPENHAX_CODEX_BIN;
   try {
     const cli = join(f.root, 'queue');
     const argsFile = join(f.root, 'queue-args.json');
@@ -205,7 +205,7 @@ void test('scene feedback snapshots its target and candidate, publishes once, an
       `#!/usr/bin/env node\nrequire('node:fs').writeFileSync(${JSON.stringify(argsFile)}, JSON.stringify(process.argv.slice(2)));`,
       { mode: 0o755 },
     );
-    process.env.CODEX_UX_CODEX_BIN = cli;
+    process.env.OPENHAX_CODEX_BIN = cli;
     const collaboration = new SceneCollaboration(f.projects, 'http://127.0.0.1:1234', f.library);
     const requestId = randomUUID();
     const target = {
@@ -258,8 +258,8 @@ void test('scene feedback snapshots its target and candidate, publishes once, an
     });
     await assert.rejects(collaboration.publish(f.id, secondId, 'Stale candidate'), /changed/);
   } finally {
-    if (previousCli === undefined) delete process.env.CODEX_UX_CODEX_BIN;
-    else process.env.CODEX_UX_CODEX_BIN = previousCli;
+    if (previousCli === undefined) delete process.env.OPENHAX_CODEX_BIN;
+    else process.env.OPENHAX_CODEX_BIN = previousCli;
     await f.close();
   }
 });
@@ -364,7 +364,7 @@ void test('scene HTTP imports keep companion files, enforce conflicts and serve 
 });
 
 void test('3D Space opens legacy app state without losing history or creating a second database', async () => {
-  const root = await mkdtemp(join(tmpdir(), 'codex-ux-space-upgrade-'));
+  const root = await mkdtemp(join(tmpdir(), 'openhax-space-upgrade-'));
   const workspaces = new WorkspaceStore(root);
   const workspace = workspaces.create('Existing space');
   const legacy = workspaces.appDirectory(workspace.id, 'scene-3d');
@@ -407,7 +407,7 @@ void test('3D Space opens legacy app state without losing history or creating a 
 
 void test('scene requests validate workspace attachments, freeze paths and never redeliver a repeated request', async () => {
   const f = await fixture();
-  const previous = process.env.CODEX_UX_CODEX_BIN;
+  const previous = process.env.OPENHAX_CODEX_BIN;
   try {
     const count = join(f.root, 'deliveries');
     const fake = join(f.root, 'fake-codex');
@@ -416,7 +416,7 @@ void test('scene requests validate workspace attachments, freeze paths and never
       `#!/usr/bin/env node\nrequire('node:fs').appendFileSync(${JSON.stringify(count)}, 'sent\\n');`,
       { mode: 0o755 },
     );
-    process.env.CODEX_UX_CODEX_BIN = fake;
+    process.env.OPENHAX_CODEX_BIN = fake;
     const collaboration = new SceneCollaboration(f.projects, 'http://127.0.0.1:1234', f.library);
     const ref = await f.library.upload(f.id, 'palette.txt', Buffer.from('Warm colors'));
     const target = {
@@ -481,8 +481,8 @@ void test('scene requests validate workspace attachments, freeze paths and never
       'invalid references fail before delivery',
     );
   } finally {
-    if (previous === undefined) delete process.env.CODEX_UX_CODEX_BIN;
-    else process.env.CODEX_UX_CODEX_BIN = previous;
+    if (previous === undefined) delete process.env.OPENHAX_CODEX_BIN;
+    else process.env.OPENHAX_CODEX_BIN = previous;
     await f.close();
   }
 });

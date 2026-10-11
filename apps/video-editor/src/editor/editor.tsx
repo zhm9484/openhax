@@ -2,13 +2,13 @@ import { EditorModals } from './editor-modals';
 import { NotesBoard } from '../panels/notes';
 import { NotePopover } from '../components/note-popover';
 import { ToolIsland } from './tool-island';
-import { useFullscreen, anchorBelow } from '@codex-ux/editor-ui';
+import { useFullscreen, anchorBelow } from '@openhax/editor-ui';
 import { useVideoFullscreen } from '../hooks/use-video-fullscreen';
 import { PlaybackScrubber } from './playback-scrubber';
 import { useRef, useState } from 'react';
 import { AlertCircle, Columns2, Upload, X } from 'lucide-react';
-import { durationOf } from '@codex-ux/video-domain';
-import type { Workspace } from '@codex-ux/protocol';
+import { durationOf } from '@openhax/video-domain';
+import type { Workspace } from '@openhax/protocol';
 import { useEditor } from '../hooks/use-editor';
 import { Header } from './header';
 import { PlayerStage } from './player-stage';
@@ -20,7 +20,7 @@ import { SelectionBox } from '../canvas/selection-box';
 import { CanvasMenu } from '../canvas/context-menu';
 import { SidePanel } from './side-panel';
 import { ExportDialog } from './export-dialog';
-import { IconButton } from '@codex-ux/editor-ui';
+import { IconButton } from '@openhax/editor-ui';
 
 interface EditorProps {
   id: string;

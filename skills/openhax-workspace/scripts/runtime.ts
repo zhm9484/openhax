@@ -29,7 +29,7 @@ export async function prepareRuntime(
         await mkdir(dirname(join(runtime, path)), { recursive: true });
         await writeFile(join(runtime, path), content);
       }
-      await mkdir(join(runtime, 'node_modules/@codex-ux'), { recursive: true });
+      await mkdir(join(runtime, 'node_modules/@openhax'), { recursive: true });
       for (const path of Object.keys(bundle.files).filter((p) =>
         /^packages\/[^/]+\/package.json$/.test(p),
       )) {
@@ -57,7 +57,7 @@ export async function prepareRuntime(
     }
     const environments = new Environments(
       runtime,
-      env.CODEX_UX_CACHE_DIR ?? dirname(dirname(runtime)),
+      env.OPENHAX_CACHE_DIR ?? dirname(dirname(runtime)),
     );
     const timer = setInterval(() => {
       console.error(environments.list().find((s) => s.id === 'core')?.stage);

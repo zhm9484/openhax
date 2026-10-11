@@ -1,4 +1,4 @@
-# Contributing to Codex UX
+# Contributing to openhax
 
 Contributions are welcome, including bug reports, ideas, documentation improvements and code. Prefer
 English for issues, pull requests and review discussions so more people can participate. Other

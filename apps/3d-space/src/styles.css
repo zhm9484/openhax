@@ -1,5 +1,5 @@
-@import '@codex-ux/library-react/styles.css';
-@import '@codex-ux/editor-ui/styles.css';
+@import '@openhax/library-react/styles.css';
+@import '@openhax/editor-ui/styles.css';
 .glass {
   background: #fffffff0;
   border: 1px solid var(--line);

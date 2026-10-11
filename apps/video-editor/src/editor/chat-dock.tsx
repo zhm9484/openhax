@@ -1,4 +1,4 @@
-import { FloatingPanel } from '@codex-ux/editor-ui';
+import { FloatingPanel } from '@openhax/editor-ui';
 import type { EditorState } from '../hooks/use-editor';
 import { FeedbackComposer } from './feedback-composer';
 export function ChatDock({ state }: { state: EditorState }) {

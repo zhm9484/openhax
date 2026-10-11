@@ -11,7 +11,7 @@ connection and workspace switching rules as Video Editor; the apps keep independ
 
 ## Interface and collaboration
 
-The shared `@codex-ux/editor-ui` header places workspace identity and status on the left and
+The shared `@openhax/editor-ui` header places workspace identity and status on the left and
 undo/redo, History, Library and Agent on the right, followed by scene search and Explore. The header
 overlays the viewport. Workspace selection/creation, neutral controls, modal dialogs and floating
 surfaces are shared with Video Editor; scene colors and navigation remain domain-owned.
@@ -137,12 +137,12 @@ materialized candidate, checks its read-only preview and publishes once through 
 endpoint. Publication checks that both the current head and working source still match the request
 base, then creates an undoable agent revision. A 409 requires reconciliation. Delivery-unknown
 requests are not retried automatically. See [Local API](local-api.md) and the
-[3D Space skill](../../skills/codex-ux-3d-space/SKILL.md).
+[3D Space skill](../../skills/openhax-3d-space/SKILL.md).
 
 ## Renamed installations
 
-The app is named **3D Space**, with ID `3d-space`, frontend package `@codex-ux/3d-space` and skill
-`codex-ux-3d-space`. Install the new app skill with its matching Workspace skill and open
+The app is named **3D Space**, with ID `3d-space`, frontend package `@openhax/3d-space` and skill
+`openhax-3d-space`. Install the new app skill with its matching Workspace skill and open
 `/apps/3d-space/`; reconnect the page under the new app ID. Old app URLs and skill names are not
 registered. New app state lives in `apps/3d-space/` inside each Workspace. When only the previous
 `apps/scene-3d/` directory exists, the service continues using it in place, preserving history,

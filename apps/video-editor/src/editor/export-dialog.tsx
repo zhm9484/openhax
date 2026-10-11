@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { ArrowDownToLine, Check, X, Film } from 'lucide-react';
-import { durationOf, formatTime, type ExportJob, type VideoProject } from '@codex-ux/video-domain';
+import { durationOf, formatTime, type ExportJob, type VideoProject } from '@openhax/video-domain';
 import { api, post } from '../lib/api';
-import { IconButton } from '@codex-ux/editor-ui';
+import { IconButton } from '@openhax/editor-ui';
 
 export function ExportDialog({
   project: initialProject,

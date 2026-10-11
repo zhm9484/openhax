@@ -77,7 +77,7 @@ export async function locateService(root: string, runtimeBuild: string) {
           { cause: error },
         );
       }
-      if (!health || health.service !== 'codex-ux' || health.dataRoot !== root)
+      if (!health || health.service !== 'openhax' || health.dataRoot !== root)
         throw new DiscoveryError(
           'service_mismatch',
           'This address belongs to a different service or data directory. It will not be used.',

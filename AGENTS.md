@@ -1,6 +1,12 @@
-# Working on Codex UX
+# Working on openhax
 
-Codex UX provides a collaboration protocol and local web apps that people and agents use together.
+openhax means Open Human Agent Experience. It provides task-specific interaction scenes for people
+and agents when language alone is not direct, precise or efficient enough. People explicitly select,
+enter, mark and submit information; agents read context and operate through app APIs or source. Do
+not infer user intent from passive clicks, pointer movement or viewing behavior. Workspaces are an
+internal data/context concept, not the product's purpose or a requirement for one goal per
+workspace.
+
 Keep implementations clear, focused, and easy to change. Add abstractions, dependencies, and
 infrastructure when they solve a concrete problem.
 
@@ -22,6 +28,9 @@ infrastructure when they solve a concrete problem.
   optional.
 - Design shared contracts around concrete collaboration use cases. Make references, revision
   handling, and operation results explicit without imposing a universal domain model.
+- Keep scene context, operations and explicit input semantics app-owned. Distinguish the implemented
+  identity/connection contract from the future goal of easier app integration; do not describe
+  generic capability discovery or workflow control as implemented until it is verified.
 
 ## Documentation
 

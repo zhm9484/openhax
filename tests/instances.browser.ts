@@ -24,7 +24,7 @@ async function select(page: Page, name: string) {
   await expect(page.getByRole('button', { name: 'Select workspace' })).toContainText(name);
 }
 const savedState = (page: Page) =>
-  page.evaluate(() => sessionStorage.getItem('codex-ux:app-instance:video-editor')!);
+  page.evaluate(() => sessionStorage.getItem('openhax:app-instance:video-editor')!);
 
 test('instances isolate bindings, restore each workspace on return and reload, and clear copied pages', async ({
   page,
@@ -66,7 +66,7 @@ test('instances isolate bindings, restore each workspace on return and reload, a
   await expect(await connection(copied)).toHaveValue('');
   // A browser restore can copy storage and navigation history. The live owner still wins.
   await copied.evaluate(
-    (state) => sessionStorage.setItem('codex-ux:app-instance:video-editor', state),
+    (state) => sessionStorage.setItem('openhax:app-instance:video-editor', state),
     await savedState(page),
   );
   await copied.reload();

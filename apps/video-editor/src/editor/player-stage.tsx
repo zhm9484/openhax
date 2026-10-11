@@ -1,5 +1,5 @@
 import { AlertCircle } from 'lucide-react';
-import type { Region } from '@codex-ux/protocol';
+import type { Region } from '@openhax/protocol';
 import { usePlayer, type PlayerOptions } from '../hooks/use-player';
 
 interface Props extends PlayerOptions {

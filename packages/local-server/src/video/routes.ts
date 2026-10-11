@@ -2,7 +2,7 @@ import type { LibraryStore } from '../storage/library.ts';
 import { randomUUID } from 'node:crypto';
 import type { IncomingMessage, ServerResponse } from 'node:http';
 import { z } from 'zod';
-import { videoSchema, intentSchema } from '@codex-ux/video-domain';
+import { videoSchema, intentSchema } from '@openhax/video-domain';
 import type { VideoStore } from './store.ts';
 import type { VideoCollaboration } from './collaboration.ts';
 import { collaborationTarget } from '../agents.ts';

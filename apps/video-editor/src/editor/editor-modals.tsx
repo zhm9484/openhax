@@ -1,8 +1,8 @@
-import { LibraryBrowser } from '@codex-ux/library-react';
+import { LibraryBrowser } from '@openhax/library-react';
 import { useEffect, useState } from 'react';
-import { formatTime } from '@codex-ux/video-domain';
+import { formatTime } from '@openhax/video-domain';
 import type { EditorState } from '../hooks/use-editor';
-import { Modal, AgentConnection } from '@codex-ux/editor-ui';
+import { Modal, AgentConnection } from '@openhax/editor-ui';
 import { NoteCard } from '../panels/notes';
 import { api, videoPath } from '../lib/api';
 

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Type, Layers } from 'lucide-react';
-import { durationOf, moveTiming, formatTime } from '@codex-ux/video-domain';
+import { durationOf, moveTiming, formatTime } from '@openhax/video-domain';
 import type { EditorState } from '../hooks/use-editor';
 import { timelineItems, type TimelineItem } from './timeline-items';
 import { updateElementTiming } from './element-edits';

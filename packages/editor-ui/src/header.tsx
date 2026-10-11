@@ -1,7 +1,7 @@
 import type { ReactNode, MouseEvent } from 'react';
-import type { Workspace } from '@codex-ux/protocol';
+import type { Workspace } from '@openhax/protocol';
 import { Bot, History, Undo2, Redo2 } from 'lucide-react';
-import { LibraryIcon } from '@codex-ux/library-react';
+import { LibraryIcon } from '@openhax/library-react';
 import { IconButton } from './ui';
 import { WorkspaceMenu } from './workspace-menu';
 

@@ -1,6 +1,6 @@
 import { useEffect, useEffectEvent, useRef, useState } from 'react';
-import { WorkspaceLibrary, type BrowserAppInstance } from '@codex-ux/sdk';
-import type { LibraryReference } from '@codex-ux/protocol';
+import { WorkspaceLibrary, type BrowserAppInstance } from '@openhax/sdk';
+import type { LibraryReference } from '@openhax/protocol';
 import {
   identityPlacement,
   type Annotation,
@@ -11,7 +11,7 @@ import {
   type SceneFeedback,
   type Vec3,
   type VisibleObject,
-} from '@codex-ux/scene-domain';
+} from '@openhax/scene-domain';
 import { api, errorMessage } from './api';
 import { SceneViewport, type Tool } from './viewport';
 

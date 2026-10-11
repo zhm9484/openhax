@@ -2,9 +2,9 @@ node_modules/
 dist/
 coverage/
 pnpm-lock.yaml
-.codex-ux/
+.openhax/
 artifacts/
 playwright-report/
 test-results/
 LICENSE
-skills/codex-ux-workspace/assets/runtime.json
+skills/openhax-workspace/assets/runtime.json

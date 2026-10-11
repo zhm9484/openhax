@@ -19,7 +19,7 @@ import { VideoStore } from '../packages/local-server/src/video/store.ts';
 import { VideoProjects } from '../packages/local-server/src/sources/projects.ts';
 
 void test('workspaces are portable file containers and app data stays independent', async () => {
-  const root = mkdtempSync(join(tmpdir(), 'codex-ux-workspaces-'));
+  const root = mkdtempSync(join(tmpdir(), 'openhax-workspaces-'));
   const workspaces = new WorkspaceStore(join(root, 'first'));
   const videos = new VideoStore(workspaces);
   let copiedVideos: VideoStore | undefined;

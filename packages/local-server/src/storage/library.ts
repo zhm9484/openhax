@@ -9,7 +9,7 @@ import type {
   LibraryEntry,
   LibraryReference,
   LibrarySearch,
-} from '@codex-ux/protocol';
+} from '@openhax/protocol';
 import type { WorkspaceStore } from './workspaces.ts';
 import { HttpError } from '../errors.ts';
 

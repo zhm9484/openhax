@@ -29,19 +29,19 @@ void test(
   'installed skills run outside the repository, pair a real page and preserve workspace data',
   { timeout: 900_000 },
   async () => {
-    const directory = await mkdtemp(join(tmpdir(), 'codex-ux-installed-'));
+    const directory = await mkdtemp(join(tmpdir(), 'openhax-installed-'));
     const data = join(directory, 'data');
-    const workspaceSkill = join(directory, 'skills/codex-ux-workspace');
-    const videoSkill = join(directory, 'skills/codex-ux-video-editor');
-    const sceneSkill = join(directory, 'skills/codex-ux-3d-space');
+    const workspaceSkill = join(directory, 'skills/openhax-workspace');
+    const videoSkill = join(directory, 'skills/openhax-video-editor');
+    const sceneSkill = join(directory, 'skills/openhax-3d-space');
     const task = randomUUID();
     let pid: number | undefined;
     const env = {
       ...process.env,
-      CODEX_UX_DATA_DIR: data,
-      CODEX_UX_CACHE_DIR: process.env.CODEX_UX_CACHE_DIR ?? join(directory, 'cache'),
+      OPENHAX_DATA_DIR: data,
+      OPENHAX_CACHE_DIR: process.env.OPENHAX_CACHE_DIR ?? join(directory, 'cache'),
       CODEX_THREAD_ID: task,
-      CODEX_UX_PORT: '0',
+      OPENHAX_PORT: '0',
     };
     const run = async (...args: string[]) => {
       const result = await execute(
@@ -58,16 +58,16 @@ void test(
     };
     const browser = await chromium.launch({
       args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader'],
-      ...(process.env.CODEX_UX_CHROME
-        ? { executablePath: process.env.CODEX_UX_CHROME }
+      ...(process.env.OPENHAX_CHROME
+        ? { executablePath: process.env.OPENHAX_CHROME }
         : process.platform === 'darwin'
           ? { executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' }
           : {}),
     });
     try {
-      await cp(resolve('skills/codex-ux-workspace'), workspaceSkill, { recursive: true });
-      await cp(resolve('skills/codex-ux-video-editor'), videoSkill, { recursive: true });
-      await cp(resolve('skills/codex-ux-3d-space'), sceneSkill, { recursive: true });
+      await cp(resolve('skills/openhax-workspace'), workspaceSkill, { recursive: true });
+      await cp(resolve('skills/openhax-video-editor'), videoSkill, { recursive: true });
+      await cp(resolve('skills/openhax-3d-space'), sceneSkill, { recursive: true });
       const started = await run('start', '--app', join(videoSkill, 'app.json'));
       const origin = started.origin as string;
       const located = await run('locate');
@@ -201,7 +201,7 @@ void test(
       };
       const stopWhileExporting = await request(origin + '/api/service/stop', {
         method: 'POST',
-        headers: { 'x-codex-ux-control': ownership.control },
+        headers: { 'x-openhax-control': ownership.control },
       });
       assert.equal(
         stopWhileExporting.status,

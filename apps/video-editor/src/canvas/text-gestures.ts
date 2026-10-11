@@ -1,4 +1,4 @@
-import type { TextElement, VideoDocument } from '@codex-ux/video-domain';
+import type { TextElement, VideoDocument } from '@openhax/video-domain';
 import { bounds, patchText, type CanvasText, type TextBinding } from './text-model';
 
 export function startTextDrag(

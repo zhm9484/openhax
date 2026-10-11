@@ -8,7 +8,7 @@ import {
   type ProjectFiles,
   type VideoDocument,
   type Asset,
-} from '@codex-ux/video-domain';
+} from '@openhax/video-domain';
 import { contained } from '../storage/paths.ts';
 import { videoDirectory, blobsDirectory } from '../video/paths.ts';
 import { HttpError } from '../errors.ts';

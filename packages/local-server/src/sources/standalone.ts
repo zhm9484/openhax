@@ -9,7 +9,7 @@ export function standaloneRuntime(kind: 'media' | 'hyperframes') {
   if (previous) return previous;
   const task = (async () => {
     if (kind === 'hyperframes') await environments.ensure('hyperframes');
-    const runtime = dirname(require.resolve('@codex-ux/video-runtime'));
+    const runtime = dirname(require.resolve('@openhax/video-runtime'));
     const result = await build({
       stdin: {
         contents: `import {${kind === 'media' ? 'mountMedia' : 'mountHyperframes'} as mount} from './${kind}.ts';const data=JSON.parse(document.getElementById('video-config').textContent);const controller=${kind === 'media' ? 'mount(data.src,data.duration)' : 'mount(data.src,data.width,data.height)'};const time=Number(new URLSearchParams(location.search).get('time'))||0;controller.ready.then(()=>controller.seek(time)).then(()=>document.documentElement.dataset.ready='true').catch(error=>window.__videoError=String(error));`,

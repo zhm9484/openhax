@@ -342,7 +342,7 @@ test('direct video replacement keeps seconds, audio, old notes, original export 
       'aria-valuemax',
       String(first.revision.document.duration),
     );
-    await page.screenshot({ path: '.codex-ux/direct-video.png' });
+    await page.screenshot({ path: '.openhax/direct-video.png' });
   } finally {
     await rm(directory, { recursive: true, force: true });
   }

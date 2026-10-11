@@ -1,7 +1,7 @@
 ---
-name: codex-ux-3d-space
+name: openhax-3d-space
 description:
-  Create, import, explore and collaboratively edit 3D scenes with the local Codex UX 3D Space app.
+  Create, import, explore and collaboratively edit 3D scenes with the local openhax 3D Space app.
   Use for Three.js worlds, procedural environments, model assembly, direct object manipulation, or
   spatial feedback with an agent. Imports Meshy and Tripo output files without integrating their
   generation APIs.
@@ -15,15 +15,15 @@ app in `dist/` and its registration in `app.json`.
 
 ## Start and connect
 
-Read the installed `codex-ux-workspace` skill first. It owns startup, shared files and connecting
-the app page to this conversation. When installed together, read
-[Workspace](../codex-ux-workspace/SKILL.md). If missing, install both from the same repository/ref:
+Read the installed `openhax-workspace` skill first. It owns startup, shared files and connecting the
+app page to this conversation. When installed together, read
+[Workspace](../openhax-workspace/SKILL.md). If missing, install both from the same repository/ref:
 
 ```sh
-npx skills add zhm9484/codex-ux --skill codex-ux-workspace codex-ux-3d-space
+npx skills add zhm9484/openhax --skill openhax-workspace openhax-3d-space
 ```
 
-Follow Workspace startup with `--app /absolute/path/to/codex-ux-3d-space/app.json` and connection
+Follow Workspace startup with `--app /absolute/path/to/openhax-3d-space/app.json` and connection
 with app ID `3d-space`. Do not send to an unrelated task or replace a page's connection without user
 authorization. Open `/apps/3d-space/w/<workspaceId>`. Initialize the scene with
 `POST /api/workspaces/<workspaceId>/apps/3d-space` and `{}`; read

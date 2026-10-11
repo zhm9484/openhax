@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { isAbsolute, resolve } from 'node:path';
 import { z } from 'zod';
-import type { AppDefinition } from '@codex-ux/protocol';
+import type { AppDefinition } from '@openhax/protocol';
 import { repositoryRoot } from './config.ts';
 
 export interface HostedApp extends AppDefinition {
@@ -21,7 +21,7 @@ const hostedApps = z
   );
 
 export function readApps(): HostedApp[] {
-  const file = process.env.CODEX_UX_APPS_FILE;
+  const file = process.env.OPENHAX_APPS_FILE;
   return hostedApps.parse(
     file
       ? JSON.parse(readFileSync(file, 'utf8'))
@@ -29,12 +29,12 @@ export function readApps(): HostedApp[] {
           {
             id: 'video-editor',
             name: 'Video Editor',
-            distDirectory: resolve(repositoryRoot, 'skills/codex-ux-video-editor/dist'),
+            distDirectory: resolve(repositoryRoot, 'skills/openhax-video-editor/dist'),
           },
           {
             id: '3d-space',
             name: '3D Space',
-            distDirectory: resolve(repositoryRoot, 'skills/codex-ux-3d-space/dist'),
+            distDirectory: resolve(repositoryRoot, 'skills/openhax-3d-space/dist'),
           },
         ],
   );

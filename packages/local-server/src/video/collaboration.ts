@@ -2,7 +2,7 @@ import type { LibraryStore } from '../storage/library.ts';
 import type { VideoProjects } from '../sources/projects.ts';
 import { randomUUID } from 'node:crypto';
 import { deliver, collaborationTarget } from '../agents.ts';
-import type { CollaborationTarget } from '@codex-ux/protocol';
+import type { CollaborationTarget } from '@openhax/protocol';
 import { join } from 'node:path';
 import type { VideoStore } from './store.ts';
 import { HttpError } from '../errors.ts';

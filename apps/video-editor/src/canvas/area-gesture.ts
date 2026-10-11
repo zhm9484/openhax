@@ -1,4 +1,4 @@
-import type { Region } from '@codex-ux/protocol';
+import type { Region } from '@openhax/protocol';
 
 /** Empty canvas is always a region-selection surface. Text owns its own move gesture. */
 export function bindAreaGesture(

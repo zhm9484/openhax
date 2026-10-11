@@ -1,11 +1,11 @@
-import { Composer, ComposerContext } from '@codex-ux/editor-ui';
+import { Composer, ComposerContext } from '@openhax/editor-ui';
 import { useRef, useState } from 'react';
 import { ArrowUp, Check } from 'lucide-react';
-import type { FeedbackAnchor, LibraryReference } from '@codex-ux/protocol';
-import { formatTime, type VideoIntent } from '@codex-ux/video-domain';
+import type { FeedbackAnchor, LibraryReference } from '@openhax/protocol';
+import { formatTime, type VideoIntent } from '@openhax/video-domain';
 import type { EditorState } from '../hooks/use-editor';
 import { api, post, videoPath } from '../lib/api';
-import type { VideoProject } from '@codex-ux/video-domain';
+import type { VideoProject } from '@openhax/video-domain';
 
 export function FeedbackComposer({ state }: { state: EditorState }) {
   const [text, setText] = useState('');

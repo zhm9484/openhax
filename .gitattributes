@@ -7,5 +7,6 @@
 *.mp4 binary
 
 # Shipped artifacts are regenerated from reviewed source, including upstream template whitespace.
-skills/codex-ux-video-editor/dist/** linguist-generated=true -whitespace
-skills/codex-ux-workspace/assets/runtime.json linguist-generated=true
+skills/openhax-video-editor/dist/** linguist-generated=true -whitespace
+skills/openhax-3d-space/dist/** linguist-generated=true -whitespace
+skills/openhax-workspace/assets/runtime.json linguist-generated=true

@@ -2,8 +2,8 @@ import {
   hyperframesTimelineItems,
   type TimelineItem,
   type VideoDocument,
-} from '@codex-ux/video-domain';
-export type { TimelineItem } from '@codex-ux/video-domain';
+} from '@openhax/video-domain';
+export type { TimelineItem } from '@openhax/video-domain';
 export function timelineItems(doc: VideoDocument): TimelineItem[] {
   if (doc.source.kind !== 'hyperframes') return [];
   return hyperframesTimelineItems(doc).map((item) => ({

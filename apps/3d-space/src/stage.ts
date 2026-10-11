@@ -1,6 +1,6 @@
 import * as THREE from 'three';
-import type { Placement, SceneDocument, SceneProject, VisibleObject } from '@codex-ux/scene-domain';
-import { objectId, identityPlacement } from '@codex-ux/scene-domain';
+import type { Placement, SceneDocument, SceneProject, VisibleObject } from '@openhax/scene-domain';
+import { objectId, identityPlacement } from '@openhax/scene-domain';
 import { disposeObject, loadModel } from './models';
 
 export interface SceneModuleContext {

@@ -202,11 +202,11 @@ Preserve stable IDs for source-backed text references. Hyperframes timelines fol
 conventions; Remotion candidates use the component manifest above.
 
 The adapter invokes `codex queue --thread <sessionId> --message <instructions>` using an argument
-array, without a shell. It resolves `CODEX_UX_CODEX_BIN`, the bundled macOS executable, or `codex`
-on PATH. An existing task and an executable supporting `queue` are required. The agent receives an
-HTTP context URL, exact candidate directory, preview URL and publication/error endpoints. Context
-returns `workspaceId`, `appId`, `target`, `baseRevision`, `currentRevision`, notes, document and
-request state.
+array, without a shell. It resolves `OPENHAX_CODEX_BIN`, the bundled macOS executable, or `codex` on
+PATH. An existing task and an executable supporting `queue` are required. The agent receives an HTTP
+context URL, exact candidate directory, preview URL and publication/error endpoints. Context returns
+`workspaceId`, `appId`, `target`, `baseRevision`, `currentRevision`, notes, document and request
+state.
 
 The request is durable before invoking the external queue. Successful queue acceptance is `sent`,
 not agent completion. Preparation failures are `failed` and release the selected notes. Unconfirmed
@@ -310,8 +310,9 @@ returns 202 immediately; concurrent requests share one job. `DELETE` requests ca
 GET/polling never triggers retries or downloads. Browser readiness includes executable validation,
 not merely package installation. These endpoints do not change project revisions or send feedback.
 
-`GET /api/health` additionally reports `pid`, `mode` and `busy`. `POST /api/service/stop` requires
-`x-codex-ux-control` matching the local runtime record's control nonce. It refuses active work with
-409, acknowledges stopping with 202, then performs normal shutdown. Use launcher `inspect`, `stop`
-and `restart` rather than exposing the nonce to frontend code. Legacy records lacking the nonce
-cannot use this endpoint. This is local process ownership, not a hosted authentication system.
+`GET /api/health` identifies the service as `service: "openhax"` and also reports `pid`, `mode` and
+`busy`. `POST /api/service/stop` requires `x-openhax-control` matching the local runtime record's
+control nonce. It refuses active work with 409, acknowledges stopping with 202, then performs normal
+shutdown. Use launcher `inspect`, `stop` and `restart` rather than exposing the nonce to frontend
+code. Legacy records lacking the nonce cannot use this endpoint. This is local process ownership,
+not a hosted authentication system.

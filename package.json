@@ -1,8 +1,8 @@
 {
-  "name": "codex-ux",
+  "name": "openhax",
   "version": "0.0.0",
   "private": true,
-  "description": "A shared workspace for people and agents, built on an open collaboration protocol.",
+  "description": "Open Human Agent Experience: interactive scenes for people and agents.",
   "license": "MIT",
   "type": "module",
   "packageManager": "pnpm@10.34.5",
@@ -11,7 +11,7 @@
     "pnpm": ">=10.34.5 <11"
   },
   "scripts": {
-    "dev": "pnpm --filter @codex-ux/local-server dev",
+    "dev": "pnpm --filter @openhax/local-server dev",
     "build": "pnpm -r --if-present run build && node scripts/build-skills.ts",
     "build:skills": "pnpm build",
     "typecheck": "tsc --noEmit && pnpm -r --if-present run typecheck",
@@ -19,7 +19,7 @@
     "format": "prettier . --write",
     "format:check": "prettier . --check",
     "check": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm test && pnpm build",
-    "start": "pnpm --filter @codex-ux/local-server start",
+    "start": "pnpm --filter @openhax/local-server start",
     "test": "node --test tests/*.test.ts",
     "test:browser": "playwright test",
     "test:skills": "pnpm build && node --test tests/progressive-startup.integration.ts tests/skills.integration.ts"

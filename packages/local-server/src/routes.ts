@@ -12,7 +12,7 @@ import { HttpError } from './errors.ts';
 import type { Connections } from './connections.ts';
 import { connectionApi } from './connection-routes.ts';
 import { validateApps } from './apps.ts';
-import { codexCapability } from '@codex-ux/adapter-codex';
+import { codexCapability } from '@openhax/adapter-codex';
 import type { SceneServices } from './scene/routes.ts';
 
 export interface Services {

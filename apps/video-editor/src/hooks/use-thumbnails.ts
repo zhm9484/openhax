@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import type { TimelineItem } from '@codex-ux/video-domain';
+import type { TimelineItem } from '@openhax/video-domain';
 
 /** Keep image generation off the browser's connection slots used for playback and saving. */
 export function useThumbnails(workspaceId: string, revisionId: string, clips: TimelineItem[]) {

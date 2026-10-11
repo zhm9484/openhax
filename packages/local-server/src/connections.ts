@@ -1,5 +1,5 @@
 import { randomBytes } from 'node:crypto';
-import type { AgentSessionRef, Connection } from '@codex-ux/protocol';
+import type { AgentSessionRef, Connection } from '@openhax/protocol';
 import { HttpError } from './errors.ts';
 
 const equal = (a: AgentSessionRef | null, b: AgentSessionRef | null) =>

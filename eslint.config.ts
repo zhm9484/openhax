@@ -11,7 +11,7 @@ export default defineConfig(
     '**/node_modules/**',
     '**/dist/**',
     '**/coverage/**',
-    '**/.codex-ux/**',
+    '**/.openhax/**',
     '**/artifacts/**',
     '**/test-results/**',
     '**/playwright-report/**',
@@ -47,7 +47,7 @@ export default defineConfig(
         {
           patterns: [
             {
-              group: ['node:*', '@codex-ux/local-server', '@codex-ux/adapter-codex'],
+              group: ['node:*', '@openhax/local-server', '@openhax/adapter-codex'],
               message: 'Keep local system access behind the server boundary.',
             },
           ],

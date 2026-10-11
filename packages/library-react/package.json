@@ -1,5 +1,5 @@
 {
-  "name": "@codex-ux/library-react",
+  "name": "@openhax/library-react",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -12,8 +12,8 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@codex-ux/protocol": "workspace:*",
-    "@codex-ux/sdk": "workspace:*"
+    "@openhax/protocol": "workspace:*",
+    "@openhax/sdk": "workspace:*"
   },
   "peerDependencies": {
     "react": "catalog:",

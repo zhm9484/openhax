@@ -1,13 +1,18 @@
 ---
-name: codex-ux-workspace
+name: openhax-workspace
 description:
-  Prepare local Codex UX workspaces, launch installed apps, and connect a specific app page to the
-  current agent session. Use when another Codex UX app skill requires a workspace or when the user
+  Prepare local openhax workspaces, launch installed apps, and connect a specific app page to the
+  current agent session. Use when another openhax app skill requires a workspace or when the user
   wants to open, connect, or reuse one. Does not manage Codex repository projects or create agent
   conversations.
 ---
 
-# Codex UX Workspace
+# openhax Workspace
+
+openhax means Open Human Agent Experience. Apps provide different interaction scenes for people and
+agents. Workspace is an internal data and connection concept; keep the user focused on their task
+and use the appropriate app skill. Feedback comes from deliberate selections, input, marking and
+submission, not inferred behavior.
 
 A Workspace is a persistent file container shared by people, agents, and apps. An app instance is
 one browser page. Each page remembers its own session binding for each Workspace. A Workspace is not
@@ -57,16 +62,16 @@ node "$WORKSPACE_SKILL/scripts/workspace.mjs" create --name "My project"
 registers the app, and starts or reuses a matching service. It returns JSON with the actual origin
 and app URL. Use that origin throughout the task; never assume a fixed port. Startup automatically
 selects an available port, preferring the last successful one on restart. Use `--port` or
-`CODEX_UX_PORT` only when a fixed port is needed (`0` restores automatic selection). Reuse the
-user's specified Workspace; create one for a new work item when appropriate. Do not silently choose
-a similarly named Workspace. Creating a Workspace does not initialize any app's document. Read the
+`OPENHAX_PORT` only when a fixed port is needed (`0` restores automatic selection). Reuse the user's
+specified Workspace; create one for a new work item when appropriate. Do not silently choose a
+similarly named Workspace. Creating a Workspace does not initialize any app's document. Read the
 relevant app skill for that step.
 
-The default data root is `~/.codex-ux/`; runtime dependencies are cached separately under
-`~/.cache/codex-ux/`. `CODEX_UX_DATA_DIR`, `CODEX_UX_CACHE_DIR`, `CODEX_UX_PORT`, and
-`CODEX_UX_CHROME` override these defaults. Pass the same data root to later launcher commands. Keep
-user content out of skill installation directories. Never edit app-private databases, blobs, or
-prepared previews. Get actual working paths through `GET /api/workspaces/:id` and app APIs.
+The default data root is `~/.openhax/`; runtime dependencies are cached separately under
+`~/.cache/openhax/`. `OPENHAX_DATA_DIR`, `OPENHAX_CACHE_DIR`, `OPENHAX_PORT`, and `OPENHAX_CHROME`
+override these defaults. Pass the same data root to later launcher commands. Keep user content out
+of skill installation directories. Never edit app-private databases, blobs, or prepared previews.
+Get actual working paths through `GET /api/workspaces/:id` and app APIs.
 
 ## Get a usable service address
 
@@ -80,7 +85,7 @@ To recover the address later without starting anything:
 node "$WORKSPACE_SKILL/scripts/workspace.mjs" locate
 ```
 
-Keep the same `--data-dir` or `CODEX_UX_DATA_DIR` across calls. Success is JSON on stdout with
+Keep the same `--data-dir` or `OPENHAX_DATA_DIR` across calls. Success is JSON on stdout with
 `state: "ready"`; discovery failures exit nonzero and emit JSON on stderr with `error.code`, the
 exact data root, and recovery instructions/command arguments. For `service_not_started`,
 `service_unreachable`, `service_record_invalid`, or `service_mismatch`, run `start` once for that
@@ -106,7 +111,7 @@ node "$WORKSPACE_SKILL/scripts/workspace.mjs" doctor
 
 Only Codex delivery is implemented. Other agents may edit files and use HTTP, but must not claim
 they can receive app-submitted feedback. A compatible Codex executable must support
-`queue --thread --message`; `CODEX_UX_CODEX_BIN` can select one before service startup. Queue
+`queue --thread --message`; `OPENHAX_CODEX_BIN` can select one before service startup. Queue
 capability is separate from session identity and successful delivery.
 
 Use the current task's authoritative ID from the agent environment. The launcher defaults to

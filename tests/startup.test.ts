@@ -12,16 +12,16 @@ const execute = promisify(execFile);
 const main = resolve('packages/local-server/src/main.ts');
 const environment = (root: string, port?: string) => ({
   ...process.env,
-  CODEX_UX_DATA_DIR: root,
-  CODEX_UX_PORT: port,
-  CODEX_UX_RUNTIME_BUILD: 'startup-test',
+  OPENHAX_DATA_DIR: root,
+  OPENHAX_PORT: port,
+  OPENHAX_RUNTIME_BUILD: 'startup-test',
 });
 
 void test(
   'automatic startup avoids occupied saved ports, reuses live services and preserves the origin on restart',
   { timeout: 30_000 },
   async (t) => {
-    const directory = await mkdtemp(join(tmpdir(), 'codex-ux-startup-'));
+    const directory = await mkdtemp(join(tmpdir(), 'openhax-startup-'));
     const root = join(directory, 'primary');
     const other = await startServer(join(directory, 'other'), 0);
     const children: { child: ChildProcess; exited: Promise<unknown> }[] = [];
@@ -55,7 +55,7 @@ void test(
       children.push({ child, exited });
       for (let attempt = 0; attempt < 200; attempt++) {
         if (child.exitCode !== null || child.signalCode !== null) throw new Error(output);
-        if (output.includes('Codex UX ·')) {
+        if (output.includes('openhax ·')) {
           const saved = JSON.parse(await readFile(join(root, 'runtime.json'), 'utf8')) as {
             origin: string;
             pid: number;
@@ -121,7 +121,7 @@ void test(
 );
 
 void test('explicit occupied and invalid ports fail without falling back or leaving a service lock', async () => {
-  const directory = await mkdtemp(join(tmpdir(), 'codex-ux-fixed-port-'));
+  const directory = await mkdtemp(join(tmpdir(), 'openhax-fixed-port-'));
   const occupied = await startServer(join(directory, 'occupied'), 0);
   const root = join(directory, 'fixed');
   try {
@@ -142,7 +142,7 @@ void test('explicit occupied and invalid ports fail without falling back or leav
       (error: unknown) =>
         error instanceof Error &&
         'stderr' in error &&
-        String(error.stderr).includes('CODEX_UX_PORT must be'),
+        String(error.stderr).includes('OPENHAX_PORT must be'),
     );
     assert.equal((await fetch(occupied.origin + '/api/health')).status, 200);
   } finally {

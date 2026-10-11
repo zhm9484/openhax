@@ -5,7 +5,7 @@ export default defineConfig({
   plugins: [react()],
   base: '/apps/video-editor/',
   build: {
-    outDir: '../../skills/codex-ux-video-editor/dist',
+    outDir: '../../skills/openhax-video-editor/dist',
     emptyOutDir: true,
     rolldownOptions: {
       output: {

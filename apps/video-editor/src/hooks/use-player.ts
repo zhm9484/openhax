@@ -1,7 +1,7 @@
 import { useEffect, useEffectEvent, useImperativeHandle, useRef, useState } from 'react';
-import { clampTime, type TextElement, type VideoDocument } from '@codex-ux/video-domain';
-import type { PreviewController, PreviewWindow } from '@codex-ux/video-runtime';
-import type { Region } from '@codex-ux/protocol';
+import { clampTime, type TextElement, type VideoDocument } from '@openhax/video-domain';
+import type { PreviewController, PreviewWindow } from '@openhax/video-runtime';
+import type { Region } from '@openhax/protocol';
 import { bindAreaGesture } from '../canvas/area-gesture';
 import { createTextEditor } from '../canvas/text-editor';
 import type { CanvasText } from '../canvas/text-model';

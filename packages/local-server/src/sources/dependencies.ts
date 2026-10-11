@@ -4,7 +4,7 @@ import { dirname, join } from 'node:path';
 import { execFile } from 'node:child_process';
 import { promisify } from 'node:util';
 import { z } from 'zod';
-import type { VideoDocument } from '@codex-ux/video-domain';
+import type { VideoDocument } from '@openhax/video-domain';
 import { digest } from './files.ts';
 import { videoDirectory } from '../video/paths.ts';
 import { HttpError } from '../errors.ts';

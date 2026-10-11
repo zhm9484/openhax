@@ -5,4 +5,4 @@ objects directly; agents edit ordinary scene source in the same Workspace.
 
 See [canonical 3D Space documentation](../../docs/canonical/3d-space.md) for source contracts,
 controls, model formats, revisions and limits, and the
-[installable skill](../../skills/codex-ux-3d-space/SKILL.md).
+[installable skill](../../skills/openhax-3d-space/SKILL.md).

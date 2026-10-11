@@ -6,7 +6,7 @@ import {
   roundFrame,
   formatTime,
   type VideoDocument,
-} from '@codex-ux/video-domain';
+} from '@openhax/video-domain';
 import type { TimeRange } from './types';
 import type { PlaybackClock } from '../lib/playback-clock';
 import { usePlaybackDisplay } from '../hooks/use-playback-display';

@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import type { CollaborationTarget } from '@codex-ux/protocol';
+import type { CollaborationTarget } from '@openhax/protocol';
 import { post, videoPath } from '../lib/api';
 
 export function useFeedbackDelivery(

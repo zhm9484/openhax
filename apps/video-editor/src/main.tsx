@@ -1,7 +1,7 @@
-import { RuntimeGate } from '@codex-ux/editor-ui';
+import { RuntimeGate } from '@openhax/editor-ui';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { openAppInstance } from '@codex-ux/sdk';
+import { openAppInstance } from '@openhax/sdk';
 import { App } from './app';
 import './styles.css';
 

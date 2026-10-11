@@ -2,7 +2,7 @@ import { randomUUID } from 'node:crypto';
 import { mkdirSync, readFileSync, readdirSync, renameSync, rmSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { z } from 'zod';
-import type { Workspace } from '@codex-ux/protocol';
+import type { Workspace } from '@openhax/protocol';
 import { HttpError } from '../errors.ts';
 import { appDirectory, workspaceDirectory, workspaceFiles } from './paths.ts';
 

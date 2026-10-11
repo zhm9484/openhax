@@ -1,7 +1,7 @@
 import { randomUUID } from 'node:crypto';
 import { mkdir, writeFile, rm } from 'node:fs/promises';
 import { join } from 'node:path';
-import type { Asset } from '@codex-ux/video-domain';
+import type { Asset } from '@openhax/video-domain';
 import { videoDirectory } from './files.ts';
 import { HttpError } from '../errors.ts';
 import { mediaDuration } from './probe.ts';

@@ -1,15 +1,50 @@
 # Architecture
 
-Codex UX provides a local collaboration protocol and web apps that share a data directory. The first
-app is Video Editor, a collaboration container for Hyperframes, Remotion and finished videos.
-Multiple app instances can open the same workspace; accepted changes are shared, and stale writes
-are rejected without automatic merging.
+openhax (Open Human Agent Experience) provides local interaction scenes for people and agents.
+Different tasks can need different forms of interaction when words alone are not direct, precise or
+efficient enough. Video Editor and 3D Space are the first implemented scenes. Editing is one use
+case; the product direction also includes decisions, explanations and exploration.
+
+## Interaction model and protocol scope
+
+People state goals and provide deliberate input. Agents organize tools and execution. A scene gives
+both sides a shared reference for objects, regions, time or space. Current feedback captures what a
+person explicitly selects, enters, marks and submits. It does not infer intent from pointer paths,
+passive clicks, dwell time or viewing behavior. Ordinary navigation and direct edits do not
+automatically dispatch agent requests.
+
+Different scenes should support different parts of the work and retain the context they need.
+Workspaces currently group files, materials and app state; they are an internal ownership concept,
+not a definition of the user's goal. The current apps expose a workspace picker. There is no
+automatic scene selection, switching or shared cross-app task model.
+
+The implemented contract is deliberately small:
+
+| Layer         | Implemented behavior                                                                      | Boundary                                                          |
+| ------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| Protocol      | Portable TypeScript references for identity, sessions, revisions, mutations and materials | No common runtime schema for arbitrary app actions or user inputs |
+| Browser SDK   | Page identity, workspace-specific bindings, pairing and material access                   | No generic scene reader or workflow controller                    |
+| Local service | Static app hosting, files, pairing, materials and Codex dispatch support                  | Registering an app build does not install its domain handlers     |
+| App domains   | Video and 3D context, operations, explicit feedback, checked publication and history      | Each app implements its own routes, validation and persistence    |
+
+Video feedback uses time/region anchors; the protocol's `FeedbackAnchor` still requires `start` and
+`end`. 3D has its own spatial anchor and feedback schema. Both apps have checked, idempotent
+mutation/publication flows, but these are not a generic app integration SDK. Adding another complete
+app still requires its own context, input and operation handlers. The long-term direction is a
+shared contract for describing capabilities, reading context, performing operations and returning
+explicit user input/results. Capability discovery and generic question/answer workflow control
+remain reserved; `read` and `act` are not finalized APIs.
+
+Domain rules stay in each app. A future scene that only collects a choice need not adopt a video
+document, source candidate or revision history. Existing apps use ordinary files and optional direct
+operations without imposing a universal domain model. See [Local API](local-api.md) for the current
+HTTP contracts.
 
 ## Concepts and ownership
 
 | Term            | Meaning                                                                                |
 | --------------- | -------------------------------------------------------------------------------------- |
-| Data directory  | The shared local data root, defaulting to `~/.codex-ux/`                               |
+| Data directory  | The shared local data root; defaults to `~/.openhax/`                                  |
 | Workspace       | A persistent file container with an ID, name and creation time; independent of apps    |
 | App             | A tool such as `video-editor`, identified separately from its installed build          |
 | App instance    | One open application page, with its own ID and zero or one selected workspace          |
@@ -21,6 +56,9 @@ Workspaces belong to the data directory, not to an app. Multiple apps and multip
 app can use the same workspace. They share files, not an implicit universal document model. Apps
 must agree on a concrete format to interpret or edit the same content. Workspace names are
 independent of video titles and video undo/redo.
+
+Multiple instances can open the same workspace; accepted changes are shared, and stale writes are
+rejected without automatic merging.
 
 An instance remembers bindings separately for each workspace: switching A → B → A restores A's
 binding. Refreshing the page preserves the instance and bindings. A new page starts unbound, even
@@ -71,7 +109,7 @@ custom app build manager, multi-agent coordinator or generic domain editing SDK.
 
 The [shared local library](library.md) belongs to a Workspace. `packages/library-react/` provides
 reusable material browsing and mention input components; the SDK and local service provide the same
-reference and file APIs to every app. `@codex-ux/editor-ui` composes that library UI with neutral
+reference and file APIs to every app. `@openhax/editor-ui` composes that library UI with neutral
 visual tokens, buttons, workspace selection, the header, agent connection dialog, movable tool
 island, nonmodal floating panels and message composer. Its separately imported `styles.css` owns
 shared styles. Apps supply domain context, draft state and operation callbacks; neither the protocol
@@ -94,15 +132,17 @@ app-owned.
 ## Storage
 
 ```text
-~/.codex-ux/
+~/.openhax/
   service.lock
   runtime.json
   workspaces/
     <workspaceId>/
       library.sqlite              # Shared material locations and references
-    workspace.json
+      workspace.json
       files/
         video/
+        scene/
+        attachments/
       apps/
         video-editor/
           state.sqlite
@@ -113,7 +153,14 @@ app-owned.
           dependencies/
           thumbnails/
           exports/
+        3d-space/
+          state.sqlite
+          blobs/
+          requests/
 ```
+
+The default data directory is `~/.openhax/`. Use `OPENHAX_DATA_DIR` or launcher `--data-dir` to
+select another root. App IDs and on-disk app formats are independent of the project name.
 
 `workspace.json` is the authoritative workspace identity. Creating a workspace creates only its
 metadata and empty `files/` and `apps/` directories. There is no root database or automatic starter
@@ -150,13 +197,13 @@ selection and creation. A selected workspace has URL `/apps/video-editor/w/<work
 selects independently. `/` lists hosted apps, and `GET /api/apps` returns their IDs and names.
 
 The backend loads Vite only in development and loads each app backend only when used. `pnpm build`
-writes the Video Editor frontend to `skills/codex-ux-video-editor/dist/` and
-`skills/codex-ux-3d-space/dist/` and generates the Workspace skill's source runtime bundle.
+writes the Video Editor frontend to `skills/openhax-video-editor/dist/` and
+`skills/openhax-3d-space/dist/` and generates the Workspace skill's source runtime bundle.
 `pnpm start` serves that build. These distribution artifacts are committed and verified by CI; other
 build output remains ignored. Installed skills run without a repository checkout or frontend build.
 See [skills](skills.md) for installation, cache ownership and release verification.
 
-`CODEX_UX_APPS_FILE` can point to a JSON array of `{ id, name, distDirectory }` records with unique
+`OPENHAX_APPS_FILE` can point to a JSON array of `{ id, name, distDirectory }` records with unique
 app IDs and absolute build paths, including builds distributed inside installed skills. The
 configured array replaces the default Video Editor and 3D Space registrations. All apps are served
 at `/apps/<appId>/` and must build for that base. Registration hosts static builds; Video Editor and
@@ -175,14 +222,18 @@ prerequisite for service startup or 3D.
 
 | Environment variable                                  | Purpose                                                       |
 | ----------------------------------------------------- | ------------------------------------------------------------- |
-| `CODEX_UX_DATA_DIR`                                   | Override the data directory                                   |
-| `CODEX_UX_APPS_FILE`                                  | Read hosted app build registrations from a JSON file          |
-| `CODEX_UX_PORT`                                       | 0/default: automatic; 1024–65535: fixed loopback port         |
-| `CODEX_UX_CODEX_BIN`                                  | Override the Codex executable                                 |
-| `CODEX_UX_CHROME`                                     | Chromium for thumbnails, Remotion rendering and browser tests |
-| `CODEX_UX_FFMPEG`, `CODEX_UX_FFPROBE`                 | Media generation/probing binary overrides                     |
+| `OPENHAX_DATA_DIR`                                    | Override the data directory                                   |
+| `OPENHAX_APPS_FILE`                                   | Read hosted app build registrations from a JSON file          |
+| `OPENHAX_PORT`                                        | 0/default: automatic; 1024–65535: fixed loopback port         |
+| `OPENHAX_CODEX_BIN`                                   | Override the Codex executable                                 |
+| `OPENHAX_CHROME`                                      | Chromium for thumbnails, Remotion rendering and browser tests |
+| `OPENHAX_FFMPEG`, `OPENHAX_FFPROBE`                   | Media generation/probing binary overrides                     |
 | `PRODUCER_HEADLESS_SHELL_PATH`                        | Chromium executable for HyperFrames rendering                 |
 | `HYPERFRAMES_FFMPEG_PATH`, `HYPERFRAMES_FFPROBE_PATH` | Hyperframes Producer binary overrides                         |
+
+Runtime caches use `~/.cache/openhax/`, or `OPENHAX_CACHE_DIR`. Browser instance state, connection
+receipts and Web Locks use the `openhax:` namespace. Restoration remains limited to reload/history
+navigation and the same origin; copied pages stay unbound.
 
 On macOS, Chrome defaults to `/Applications/Google Chrome.app/Contents/MacOS/Google Chrome`.
 Background preparation also checks known Chrome/Edge/Chromium paths on supported platforms, then
@@ -204,11 +255,11 @@ snapshots, request routing snapshots, publication, source/build rejection and HT
 Delivery tests substitute a local executable and never send real messages.
 
 `pnpm test:browser` builds and starts an isolated service on port 5197 using a fresh directory under
-`.codex-ux/browser-tests/` for each run. It covers instance/session isolation and restoration,
-copied pages, sending while switching workspaces, canvas editing, draft preservation, history, media
-drops, responsive layouts, fullscreen, Hyperframes dependencies, Remotion builds, direct video
-replacement, old-version playback and failed-preview recovery. It renders Hyperframes and Remotion
-MP4s and verifies direct media exports, requiring Chrome and the media binaries. Browser/export
-integration is separate from `pnpm check`.
+`.openhax/browser-tests/` for each run. It covers instance/session isolation and restoration, copied
+pages, sending while switching workspaces, canvas editing, draft preservation, history, media drops,
+responsive layouts, fullscreen, Hyperframes dependencies, Remotion builds, direct video replacement,
+old-version playback and failed-preview recovery. It renders Hyperframes and Remotion MP4s and
+verifies direct media exports, requiring Chrome and the media binaries. Browser/export integration
+is separate from `pnpm check`.
 
 See [video editing](video-editor.md) and [local API](local-api.md) for detailed behavior.

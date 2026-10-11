@@ -1,4 +1,4 @@
-import type { AgentSessionRef, Connection } from '@codex-ux/protocol';
+import type { AgentSessionRef, Connection } from '@openhax/protocol';
 import type { BrowserAppInstance } from './index.ts';
 
 const equal = (a: AgentSessionRef | null, b: AgentSessionRef | null) =>
@@ -17,7 +17,7 @@ export class InstanceConnections {
   constructor(instance: BrowserAppInstance, base: string) {
     this.instance = instance;
     this.base = base;
-    this.storageKey = `codex-ux:connection:${instance.context.id}`;
+    this.storageKey = `openhax:connection:${instance.context.id}`;
     this.invitation = new URLSearchParams(location.hash.slice(1)).get('connect');
     if (this.invitation)
       history.replaceState(history.state, '', location.pathname + location.search);

@@ -16,15 +16,15 @@ void test(
     const directory = await mkdtemp(join(tmpdir(), 'ux progressive 空间 & '));
     const data = join(directory, 'data');
     const cache = join(directory, 'cache');
-    const skill = join(directory, 'skills/codex-ux-workspace');
-    const app = join(directory, 'skills/codex-ux-3d-space');
+    const skill = join(directory, 'skills/openhax-workspace');
+    const app = join(directory, 'skills/openhax-3d-space');
     const env = {
       ...process.env,
-      CODEX_UX_DATA_DIR: data,
-      CODEX_UX_CACHE_DIR: cache,
-      CODEX_UX_PORT: '0',
+      OPENHAX_DATA_DIR: data,
+      OPENHAX_CACHE_DIR: cache,
+      OPENHAX_PORT: '0',
       npm_config_package: 'node@24.20.0',
-      CODEX_UX_CHROME: join(directory, 'missing-browser'),
+      OPENHAX_CHROME: join(directory, 'missing-browser'),
     };
     let pid: number | undefined;
     const run = async (args: string[], overrides = {}) => {
@@ -42,16 +42,16 @@ void test(
     };
     const timings: Record<string, number> = {};
     const browser = await chromium.launch({
-      ...(process.env.CODEX_UX_CHROME
-        ? { executablePath: process.env.CODEX_UX_CHROME }
+      ...(process.env.OPENHAX_CHROME
+        ? { executablePath: process.env.OPENHAX_CHROME }
         : process.platform === 'darwin'
           ? { executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' }
           : {}),
       args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader'],
     });
     try {
-      await cp(resolve('skills/codex-ux-workspace'), skill, { recursive: true });
-      await cp(resolve('skills/codex-ux-3d-space'), app, { recursive: true });
+      await cp(resolve('skills/openhax-workspace'), skill, { recursive: true });
+      await cp(resolve('skills/openhax-3d-space'), app, { recursive: true });
       let started = performance.now();
       const service = await run(['start', '--app', join(app, 'app.json')]);
       timings.coldCore = performance.now() - started;

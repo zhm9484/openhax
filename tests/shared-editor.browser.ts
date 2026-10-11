@@ -10,8 +10,8 @@ import type {
 
 test.use({
   launchOptions: {
-    ...(process.env.CODEX_UX_CHROME
-      ? { executablePath: process.env.CODEX_UX_CHROME }
+    ...(process.env.OPENHAX_CHROME
+      ? { executablePath: process.env.OPENHAX_CHROME }
       : process.platform === 'darwin'
         ? { executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' }
         : {}),

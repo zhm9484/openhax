@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import type { LibraryReference } from '@codex-ux/protocol';
-import type { WorkspaceLibrary } from '@codex-ux/sdk';
+import type { LibraryReference } from '@openhax/protocol';
+import type { WorkspaceLibrary } from '@openhax/sdk';
 import { FileIcon } from './file-icon';
 
 export function AttachmentList({

@@ -1,13 +1,13 @@
 import type { LibraryStore } from '../storage/library.ts';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
-import type { LibraryReference, CollaborationTarget } from '@codex-ux/protocol';
+import type { LibraryReference, CollaborationTarget } from '@openhax/protocol';
 import type {
   SceneDocument,
   SceneFeedback,
   SceneProject,
   SceneSnapshot,
-} from '@codex-ux/scene-domain';
+} from '@openhax/scene-domain';
 import { deliver } from '../agents.ts';
 import { HttpError } from '../errors.ts';
 import { capture, hash, materialize } from './files.ts';

@@ -52,9 +52,9 @@ jobs:
 
       - name: Verify shipped skill artifacts
         run:
-          git diff --exit-code -- skills/codex-ux-workspace/assets/runtime.json
-          skills/codex-ux-video-editor/app.json skills/codex-ux-video-editor/dist
-          skills/codex-ux-3d-space/app.json skills/codex-ux-3d-space/dist
+          git diff --exit-code -- skills/openhax-workspace/assets/runtime.json
+          skills/openhax-video-editor/app.json skills/openhax-video-editor/dist
+          skills/openhax-3d-space/app.json skills/openhax-3d-space/dist
 
   installed-skills:
     name: Installed skills (${{ matrix.os }})
@@ -76,6 +76,6 @@ jobs:
       - name: Select test browser
         shell: bash
         run:
-          node -e 'require("node:fs").appendFileSync(process.env.GITHUB_ENV, "CODEX_UX_CHROME=" +
+          node -e 'require("node:fs").appendFileSync(process.env.GITHUB_ENV, "OPENHAX_CHROME=" +
           require("@playwright/test").chromium.executablePath() + "\n")'
       - run: pnpm test:skills

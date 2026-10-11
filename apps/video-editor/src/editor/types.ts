@@ -1,5 +1,5 @@
 import type { CanvasText } from '../canvas/text-model';
-import type { TextElement } from '@codex-ux/video-domain';
+import type { TextElement } from '@openhax/video-domain';
 export type Panel = 'history' | null;
 export interface TimeRange {
   start: number;

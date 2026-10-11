@@ -1,5 +1,5 @@
 {
-  "name": "@codex-ux/3d-space",
+  "name": "@openhax/3d-space",
   "version": "0.0.0",
   "private": true,
   "license": "MIT",
@@ -9,15 +9,15 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@codex-ux/scene-domain": "workspace:*",
-    "@codex-ux/protocol": "workspace:*",
-    "@codex-ux/sdk": "workspace:*",
+    "@openhax/scene-domain": "workspace:*",
+    "@openhax/protocol": "workspace:*",
+    "@openhax/sdk": "workspace:*",
     "lucide-react": "1.41.0",
     "react": "catalog:",
     "react-dom": "catalog:",
     "three": "0.185.1",
-    "@codex-ux/editor-ui": "workspace:*",
-    "@codex-ux/library-react": "workspace:*"
+    "@openhax/editor-ui": "workspace:*",
+    "@openhax/library-react": "workspace:*"
   },
   "devDependencies": {
     "@types/three": "0.185.4",

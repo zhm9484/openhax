@@ -2,10 +2,10 @@ import { build } from 'esbuild';
 import { createRequire } from 'node:module';
 import { dirname, join } from 'node:path';
 import { mkdir, writeFile, access } from 'node:fs/promises';
-import type { VideoDocument } from '@codex-ux/video-domain';
+import type { VideoDocument } from '@openhax/video-domain';
 import { dependencyDirectory, linkDependencies, runtimeAliases } from './dependencies.ts';
 const require = createRequire(import.meta.url);
-const runtimeDirectory = dirname(require.resolve('@codex-ux/video-runtime'));
+const runtimeDirectory = dirname(require.resolve('@openhax/video-runtime'));
 const assetLoaders = {
   '.png': 'file',
   '.jpg': 'file',

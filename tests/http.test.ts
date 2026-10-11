@@ -9,7 +9,7 @@ import { startServer } from '../packages/local-server/src/server.ts';
 import type { VideoProject } from '../packages/video-domain/src/schema.ts';
 
 void test('HTTP rejects cross-origin writes, stale edits and cross-workspace references', async () => {
-  const root = await mkdtemp(join(tmpdir(), 'codex-ux-http-'));
+  const root = await mkdtemp(join(tmpdir(), 'openhax-http-'));
   const app = await startServer(root, 0);
   const { origin } = app;
   const post = (path: string, body: unknown) =>

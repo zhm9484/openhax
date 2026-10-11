@@ -8,8 +8,8 @@ import {
   type VideoDocument,
   type VideoProject,
   type Note,
-} from '@codex-ux/video-domain';
-import type { ChangeRequest } from '@codex-ux/protocol';
+} from '@openhax/video-domain';
+import type { ChangeRequest } from '@openhax/protocol';
 import type { WorkspaceStore } from '../storage/workspaces.ts';
 import { HttpError } from '../errors.ts';
 import { openVideoDatabase } from './database.ts';

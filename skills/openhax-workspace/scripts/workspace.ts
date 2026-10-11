@@ -26,7 +26,7 @@ const { positionals, values } = parseArgs({
   },
 });
 const root = resolve(
-  values['data-dir'] ?? process.env.CODEX_UX_DATA_DIR ?? join(homedir(), '.codex-ux'),
+  values['data-dir'] ?? process.env.OPENHAX_DATA_DIR ?? join(homedir(), '.openhax'),
 );
 const skill = resolve(import.meta.dirname, '..');
 const bundle = JSON.parse(await readFile(join(skill, 'assets/runtime.json'), 'utf8')) as {
@@ -35,7 +35,7 @@ const bundle = JSON.parse(await readFile(join(skill, 'assets/runtime.json'), 'ut
 };
 if (createHash('sha256').update(JSON.stringify(bundle.files)).digest('hex') !== bundle.build)
   throw new Error('The Workspace skill runtime is incomplete. Reinstall this skill.');
-const cache = resolve(process.env.CODEX_UX_CACHE_DIR ?? join(homedir(), '.cache/codex-ux'));
+const cache = resolve(process.env.OPENHAX_CACHE_DIR ?? join(homedir(), '.cache/openhax'));
 const runtime = join(cache, 'runtimes', bundle.build);
 const exists = (path: string) =>
   access(path).then(
@@ -76,12 +76,12 @@ async function prepare() {
     ...runtimeEnvironment(),
     PATH: `${dirname(process.execPath)}${process.platform === 'win32' ? ';' : ':'}${process.env.PATH ?? ''}`,
     CI: 'true',
-    CODEX_UX_CACHE_DIR: cache,
+    OPENHAX_CACHE_DIR: cache,
     npm_config_prefix: npmPrefix,
   });
 }
 async function start() {
-  const requestedPort = Number(values.port ?? process.env.CODEX_UX_PORT ?? 0);
+  const requestedPort = Number(values.port ?? process.env.OPENHAX_PORT ?? 0);
   if (
     !Number.isInteger(requestedPort) ||
     (requestedPort !== 0 && (requestedPort < 1024 || requestedPort > 65535))
@@ -151,7 +151,7 @@ async function start() {
       }
     }
     await prepare();
-    const selectedPort = Number(values.port ?? process.env.CODEX_UX_PORT ?? 0);
+    const selectedPort = Number(values.port ?? process.env.OPENHAX_PORT ?? 0);
     if (
       !Number.isInteger(selectedPort) ||
       (selectedPort !== 0 && (selectedPort < 1024 || selectedPort > 65535))
@@ -166,12 +166,12 @@ async function start() {
       stdio: ['ignore', log.fd, log.fd],
       env: {
         ...runtimeEnvironment(),
-        CODEX_UX_DATA_DIR: root,
-        CODEX_UX_PORT: String(selectedPort),
-        CODEX_UX_APPS_FILE: registryPath,
-        CODEX_UX_RUNTIME_BUILD: bundle.build,
-        CODEX_UX_RUNTIME_DIR: runtime,
-        CODEX_UX_CACHE_DIR: cache,
+        OPENHAX_DATA_DIR: root,
+        OPENHAX_PORT: String(selectedPort),
+        OPENHAX_APPS_FILE: registryPath,
+        OPENHAX_RUNTIME_BUILD: bundle.build,
+        OPENHAX_RUNTIME_DIR: runtime,
+        OPENHAX_CACHE_DIR: cache,
       },
     });
     let startupError: Error | undefined;
@@ -238,7 +238,7 @@ async function inspect() {
   )
     throw new Error('Invalid service address.');
   const health = await api(saved.origin, '/health');
-  if (health.service !== 'codex-ux' || health.dataRoot !== root || health.pid !== saved.pid)
+  if (health.service !== 'openhax' || health.dataRoot !== root || health.pid !== saved.pid)
     throw new Error('Service ownership could not be verified.');
   return { saved, health };
 }
@@ -262,7 +262,7 @@ async function stop() {
     );
   const response = await fetch(current.saved.origin + '/api/service/stop', {
     method: 'POST',
-    headers: { 'x-codex-ux-control': current.saved.control },
+    headers: { 'x-openhax-control': current.saved.control },
     signal: AbortSignal.timeout(5000),
   });
   const result = (await response.json()) as { error?: string };

@@ -30,7 +30,7 @@ coverage/
 *.p12
 
 # Local projects, assets, and generated media
-.codex-ux/
+.openhax/
 artifacts/
 
 # Test output and logs
@@ -57,7 +57,7 @@ Thumbs.db
 .fleet/
 
 # Installable skills include the shipped application, not a build prerequisite.
-!skills/codex-ux-video-editor/dist/
-!skills/codex-ux-video-editor/dist/**
-!skills/codex-ux-3d-space/dist/
-!skills/codex-ux-3d-space/dist/**
+!skills/openhax-video-editor/dist/
+!skills/openhax-video-editor/dist/**
+!skills/openhax-3d-space/dist/
+!skills/openhax-3d-space/dist/**

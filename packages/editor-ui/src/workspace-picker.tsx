@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import type { Workspace } from '@codex-ux/protocol';
+import type { Workspace } from '@openhax/protocol';
 import { ArrowRight, FolderOpen } from 'lucide-react';
 
 export function WorkspacePicker({
@@ -34,7 +34,7 @@ export function WorkspacePicker({
       <div className="workspace-wordmark">
         {icon}
         <span>{appName}</span>
-        <small>by Codex UX</small>
+        <small>by openhax</small>
       </div>
       <h1>Choose a workspace</h1>
       <p className="workspace-intro">{description}</p>

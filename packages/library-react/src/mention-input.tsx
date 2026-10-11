@@ -8,8 +8,8 @@ import {
   useId,
 } from 'react';
 import { createPortal } from 'react-dom';
-import type { LibraryEntry, LibraryReference } from '@codex-ux/protocol';
-import type { WorkspaceLibrary } from '@codex-ux/sdk';
+import type { LibraryEntry, LibraryReference } from '@openhax/protocol';
+import type { WorkspaceLibrary } from '@openhax/sdk';
 import { FileIcon, LibraryIcon } from './file-icon';
 import { fileKind } from './file-kind';
 import { AttachmentList } from './attachments';

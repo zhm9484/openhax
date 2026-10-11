@@ -4,7 +4,7 @@ import { promisify } from 'node:util';
 const exec = promisify(execFile);
 
 async function executablePath() {
-  let executable = process.env.CODEX_UX_CODEX_BIN;
+  let executable = process.env.OPENHAX_CODEX_BIN;
   if (!executable) {
     const bundled = '/Applications/ChatGPT.app/Contents/Resources/codex';
     try {
@@ -40,7 +40,7 @@ export async function codexCapability() {
       executable,
       deliveryAvailable: false,
       detail:
-        'Codex queue is unavailable. Set CODEX_UX_CODEX_BIN to an executable supporting queue --thread --message.',
+        'Codex queue is unavailable. Set OPENHAX_CODEX_BIN to an executable supporting queue --thread --message.',
     };
   }
 }
