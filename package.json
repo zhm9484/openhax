@@ -2,7 +2,7 @@
   "name": "openhax",
   "version": "0.0.0",
   "private": true,
-  "description": "Open Human Agent Experience: interactive scenes for people and agents.",
+  "description": "Open Human Agent Experience: collaboration beyond chat.",
   "license": "MIT",
   "type": "module",
   "packageManager": "pnpm@10.34.5",

@@ -5,6 +5,6 @@ selected workspace and workspace-specific agent session bindings. Refresh restor
 instance; new and copied pages start unbound. `target(workspaceId)` returns a detached routing
 snapshot for a submission.
 
-The SDK also exposes shared pairing and material APIs. It has no generic scene reader, action
-dispatcher or user-input schema. The SDK depends only on protocol types. See
+The SDK also exposes shared pairing and material APIs. Each app supplies its own context, operations
+and user-input schema. The SDK depends only on protocol types. See
 [canonical architecture](../../docs/canonical/architecture.md) for lifecycle and storage behavior.

@@ -1,29 +1,26 @@
 # Architecture
 
-openhax (Open Human Agent Experience) provides local interaction scenes for people and agents.
-Different tasks can need different forms of interaction when words alone are not direct, precise or
-efficient enough. Video Editor and 3D Space are the first implemented scenes. Editing is one use
-case; the product direction also includes decisions, explanations and exploration.
+openhax (Open Human Agent Experience) builds interfaces for people and AI agents to work together
+beyond chat. The design assumes that agents handle tools and execution while interfaces help people
+understand and guide the work. Video Editor and 3D Space are the first implementations.
 
 ## Interaction model and protocol scope
 
-People state goals and provide deliberate input. Agents organize tools and execution. A scene gives
-both sides a shared reference for objects, regions, time or space. Current feedback captures what a
-person explicitly selects, enters, marks and submits. It does not infer intent from pointer paths,
-passive clicks, dwell time or viewing behavior. Ordinary navigation and direct edits do not
-automatically dispatch agent requests.
+People state goals and provide explicit input. Agents read that input, use app context and perform
+operations. Each app defines what those interactions mean. Feedback is submitted deliberately; the
+system does not infer intent from navigation or viewing behavior. Direct edits do not automatically
+dispatch agent requests.
 
-Different scenes should support different parts of the work and retain the context they need.
-Workspaces currently group files, materials and app state; they are an internal ownership concept,
-not a definition of the user's goal. The current apps expose a workspace picker. There is no
-automatic scene selection, switching or shared cross-app task model.
+The interface should fit the task. Workspaces group files, materials and app state. They are an
+internal data concept and do not define the user's goal. The current apps expose a workspace picker.
+Automatic app selection or switching and a shared cross-app task model are not implemented.
 
 The implemented contract is deliberately small:
 
 | Layer         | Implemented behavior                                                                      | Boundary                                                          |
 | ------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
 | Protocol      | Portable TypeScript references for identity, sessions, revisions, mutations and materials | No common runtime schema for arbitrary app actions or user inputs |
-| Browser SDK   | Page identity, workspace-specific bindings, pairing and material access                   | No generic scene reader or workflow controller                    |
+| Browser SDK   | Page identity, workspace-specific bindings, pairing and material access                   | No shared API for app context or workflow control                 |
 | Local service | Static app hosting, files, pairing, materials and Codex dispatch support                  | Registering an app build does not install its domain handlers     |
 | App domains   | Video and 3D context, operations, explicit feedback, checked publication and history      | Each app implements its own routes, validation and persistence    |
 
@@ -35,8 +32,8 @@ shared contract for describing capabilities, reading context, performing operati
 explicit user input/results. Capability discovery and generic question/answer workflow control
 remain reserved; `read` and `act` are not finalized APIs.
 
-Domain rules stay in each app. A future scene that only collects a choice need not adopt a video
-document, source candidate or revision history. Existing apps use ordinary files and optional direct
+Domain rules stay in each app. An app that only collects a choice need not adopt a video document,
+source candidate or revision history. Existing apps use ordinary files and optional direct
 operations without imposing a universal domain model. See [Local API](local-api.md) for the current
 HTTP contracts.
 

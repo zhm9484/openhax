@@ -1,11 +1,9 @@
 # Working on openhax
 
-openhax means Open Human Agent Experience. It provides task-specific interaction scenes for people
-and agents when language alone is not direct, precise or efficient enough. People explicitly select,
-enter, mark and submit information; agents read context and operate through app APIs or source. Do
-not infer user intent from passive clicks, pointer movement or viewing behavior. Workspaces are an
-internal data/context concept, not the product's purpose or a requirement for one goal per
-workspace.
+openhax means Open Human Agent Experience. It builds interfaces for people and AI agents to work
+together beyond chat. Design each interface around the task. People provide explicit input; agents
+read context and act through app APIs or source files. Do not infer user intent from navigation or
+viewing behavior. Workspaces group data internally; they do not define the user's goal.
 
 Keep implementations clear, focused, and easy to change. Add abstractions, dependencies, and
 infrastructure when they solve a concrete problem.
@@ -28,9 +26,8 @@ infrastructure when they solve a concrete problem.
   optional.
 - Design shared contracts around concrete collaboration use cases. Make references, revision
   handling, and operation results explicit without imposing a universal domain model.
-- Keep scene context, operations and explicit input semantics app-owned. Distinguish the implemented
-  identity/connection contract from the future goal of easier app integration; do not describe
-  generic capability discovery or workflow control as implemented until it is verified.
+- Let each app define its context, operations and explicit user inputs. Distinguish implemented
+  protocol features from proposed extensions, and verify claims against source.
 
 ## Documentation
 

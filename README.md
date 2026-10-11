@@ -2,49 +2,36 @@
 
 **Open Human Agent Experience**
 
-Interactive scenes for people and agents. Different tasks need different ways to communicate.
-openhax brings selections, regions, time and space into the conversation when words alone are not
-direct, precise or efficient enough.
+openhax builds interfaces for people and AI agents to work together beyond chat.
 
 ## Vision
 
-People express their goals and work with an agent to move the task forward. The agent organizes
-tools and execution. An interactive scene gives both sides a shared view: people select, enter, mark
-and explicitly submit information; the agent reads that context and presents or changes the result.
-A scene can support a decision, an explanation or an exploration as well as an edit.
+We believe people will increasingly work through agents. As agents handle tools and execution,
+software should help people understand and guide the work. The interface should fit the task.
 
 ```mermaid
 flowchart LR
     human[Person] <-->|Language| agent[Agent]
-    human <-->|Explicit input| scene[Task-specific scene]
-    agent <-->|Context and operations| scene
+    human <-->|Explicit input| ui[Shared interface]
+    agent <-->|Context and operations| ui
 ```
 
-As the task changes, the interaction can take a different form while retaining the context it needs.
-Workspaces are an internal way to group files and app state; they do not define the product
-experience or imply one workspace per goal. The current scope uses deliberate selections, input,
-annotations and submissions. It does not infer intent from passive clicks, pointer movement or
-viewing behavior.
-
-The engineering direction is a small, open collaboration contract that makes more scenes easier to
-build. Each app should define its own context, operations and explicit user inputs. Shared
-infrastructure should handle identity, routing, references and operation results without imposing a
-universal domain model. The current implementation and remaining boundaries are described in
-[Architecture](docs/canonical/architecture.md).
+Our goal is an open protocol that makes these interfaces easy to build. Each app defines how people
+and agents work together; shared infrastructure connects them. See
+[Architecture](docs/canonical/architecture.md) for the implemented protocol and its current limits.
 
 ## Status
 
-Two local apps exercise the collaboration model. Video Editor supports Hyperframes source, Remotion
+The project currently includes two local apps. Video Editor supports Hyperframes source, Remotion
 source and MP4/WebM files, with playback, selected HTML edits, time/region feedback, history and
 export. 3D Space provides a Three.js viewport, object manipulation, model imports and spatial
-feedback. These are the first interaction scenes, not the limit of the project.
+feedback.
 
 Shared identity, page/session pairing, material references and browser helpers are implemented. Both
 apps capture explicit feedback, route it to an existing Codex task and accept checked changes. Their
 context and operation APIs remain app-specific. A common capability-discovery interface, generic
-input/action contract, automatic scene switching and custom app build management are not
-implemented. Other agents can use source and HTTP workflows; feedback delivery currently supports
-Codex only.
+input/action contract, automatic app switching and custom app build management are not implemented.
+Other agents can use source and HTTP workflows; feedback delivery currently supports Codex only.
 
 ## Install and use
 

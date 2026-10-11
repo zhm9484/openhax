@@ -1,9 +1,10 @@
 # Video editor
 
-Video Editor is a collaboration container for Hyperframes source, Remotion source and finished video
-files. One video project lives in each workspace. Playback, timeline selection, notes, history and
-agent requests use the same interface for all three. An engine's authoring model stays in its
-ordinary files; the editor does not translate those files into a universal clip arrangement.
+Video Editor lets people and agents review and edit Hyperframes projects, Remotion projects and
+finished video files. One video project lives in each workspace. Playback, timeline selection,
+notes, history and agent requests use the same interface for all three. An engine's authoring model
+stays in its ordinary files; the editor does not translate those files into a universal clip
+arrangement.
 
 The workspace selector switches this app instance without changing other pages. Workspace names are
 independent of video titles. The header, workspace picker, dialogs, tool island and composer use

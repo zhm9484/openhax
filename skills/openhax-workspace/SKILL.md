@@ -9,10 +9,9 @@ description:
 
 # openhax Workspace
 
-openhax means Open Human Agent Experience. Apps provide different interaction scenes for people and
-agents. Workspace is an internal data and connection concept; keep the user focused on their task
-and use the appropriate app skill. Feedback comes from deliberate selections, input, marking and
-submission, not inferred behavior.
+openhax apps let people and agents work together through a shared interface. Choose the app that
+fits the task and use its skill. Workspaces group data internally; keep the user focused on the
+work. Use explicit user input; do not infer requests from navigation or viewing behavior.
 
 A Workspace is a persistent file container shared by people, agents, and apps. An app instance is
 one browser page. Each page remembers its own session binding for each Workspace. A Workspace is not

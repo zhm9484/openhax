@@ -119,7 +119,7 @@ export async function startServer(
           text.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('"', '&quot;');
         res.setHeader('Content-Type', 'text/html');
         res.end(
-          `<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>openhax · Open Human Agent Experience</title><body><h1>openhax</h1><p>Open Human Agent Experience</p><p>Interactive scenes for people and agents.</p><ul>${apps.map((app) => `<li><a href="/apps/${app.id}/">${escape(app.name)}</a></li>`).join('')}</ul></body></html>`,
+          `<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>openhax · Open Human Agent Experience</title><body><h1>openhax</h1><p>Open Human Agent Experience</p><p>Interfaces for people and AI agents to work together beyond chat.</p><ul>${apps.map((app) => `<li><a href="/apps/${app.id}/">${escape(app.name)}</a></li>`).join('')}</ul></body></html>`,
         );
         return;
       }
